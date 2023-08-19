@@ -29,7 +29,6 @@
 ```bash
   composer install
   php artisan key:generate
-
 ```
 4- Run database migrations
 

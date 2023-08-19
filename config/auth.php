@@ -107,5 +107,5 @@ return [
     */
 
     'password_timeout' => 10800,
-
+    'code_timeout'=>600
 ];

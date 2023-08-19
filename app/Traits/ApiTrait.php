@@ -7,7 +7,7 @@ trait ApiTrait{
     public static function successMessage(string $message="",int $statusCode = 200)
     {
         return response()->json([
-            'success'=>true,
+            'result'=>true,
             'message'=>$message,
             'data'=>(object)[],
             'errors'=>(object)[]
@@ -17,7 +17,7 @@ trait ApiTrait{
     public static function errorMessage(array $errors,string$message="",int $statusCode = 422)
     {
         return response()->json([
-            'success'=>false,
+            'result'=>false,
             'message'=>$message,
             'data'=>(object)[],
             'errors'=>(object)$errors
@@ -28,7 +28,7 @@ trait ApiTrait{
     public static function data(array $data,string $message = "",int $statusCode = 200)
     {
         return response()->json([
-            'success'=>true,
+            'result'=>true,
             'message'=>$message,
             'data'=>(object)$data,
             'errors'=>(object)[]
