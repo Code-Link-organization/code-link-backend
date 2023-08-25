@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests\Auth;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SignupRequest extends FormRequest
+class ResetPasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +24,6 @@ class SignupRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>['required','string','between:3,32'],
-            'email'=>['required','email','unique:users'],
             'password'=>['required','confirmed','min:6'],
             'password_confirmation'=>['required'],
         ];

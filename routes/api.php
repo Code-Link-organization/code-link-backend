@@ -24,11 +24,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::prefix('user')->group(function () {
-    Route::post('/signup', SignupController::class);  // guest
+    Route::post('/signup', SignupController::class);  
 
-    Route::group(['controller' => EmailVerificationController::class, 'middleware' => 'auth:sanctum'], function () {
-        Route::get('/send-mail', 'send'); //auth
-        Route::post('/check-code', 'verify'); //auth
+    Route::group(['controller' => EmailVerificationController::class], function () {
+        Route::post('/send-mail', 'sendEmail'); 
+        Route::post('/check-code', 'verifyEmail');
     });
 
 
@@ -37,7 +37,12 @@ Route::prefix('user')->group(function () {
             Route::get('/logout', 'logout'); //auth
         });
 
-        Route::post('/login', 'login'); // guest
+        Route::post('/login', 'login'); 
     });
 
+});
+
+Route::group(['prefix'=>'user','controller'=>ResetPasswordController::class],function(){
+    Route::post('/check-email','checkEmail');
+    Route::post('/reset-password','resetPassword')-> middleware('auth:sanctum'); //auth
 });

@@ -28,10 +28,16 @@ class SignupController extends Controller
             return ApiTrait::errorMessage([], "Something went wrong", 500);
         }
 
-        $token = $user->createToken('auth_token')->plainTextToken;
-        $user->token = $token;
+        $userData = $user->only($user->responseFields());
 
-        return ApiTrait::data(
-            ['user' => $user], "User Created Successfully", 201 );
+        return response()->json([
+            'result' => true,
+            'message' => "Registration Successful, now verify your email",
+            'data' => [
+                'user' => $userData,
+            ],
+            'errors' => [],
+        ], 201);
     }
 }
+

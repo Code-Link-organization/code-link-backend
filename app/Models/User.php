@@ -41,4 +41,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // User model
+   public function responseFields(){
+    return [
+        'id','name', 'email', 'email_verified_at', 'created_at', 'updated_at', 
+    ];
+    }
 }

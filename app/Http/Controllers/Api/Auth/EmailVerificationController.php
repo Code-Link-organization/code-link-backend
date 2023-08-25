@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Traits\ApiTrait;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Auth\CodeRequest;
 use App\Mail\VerificationCode;
 use App\Models\User;
@@ -13,10 +12,14 @@ use Illuminate\Support\Facades\Mail;
 
 class EmailVerificationController extends Controller
 {
-    public function send(Request $request)
+    public function sendEmail(Request $request)
     {
-        $user = Auth::guard('sanctum')->user();
-        $token = $request->header('Authorization');
+        $user = User::where('email', $request->input('email'))->first();
+
+        if (!$user) {
+            return ApiTrait::errorMessage([], 'User not found', 404);
+        }
+
         $code = rand(1000, 9999); // Generate a 4-digit code
         $user->code = $code;
         $user->code_expired_at = now()->addMinutes(config('auth.code_timeout'));
@@ -28,36 +31,38 @@ class EmailVerificationController extends Controller
             return ApiTrait::errorMessage(['mail' => $e->getMessage()], 'Please Try Again Later');
         }
 
-        // Remove "Bearer" prefix from token
-        $token = str_replace('Bearer ', '', $token);
-
-        $user->token = $token;
-
-        return ApiTrait::data(['data' => ['user' => $user]], "Mail Sent Successfully", 200);
+        $userData = $user->only($user->responseFields('email_verified_at')); // Exclude token
+        return ApiTrait::data(['user' => $userData], "Mail Sent Successfully, You Will Receive Code In Your Email", 200);
     }
 
-    public function verify(CodeRequest $request)
+    public function verifyEmail(CodeRequest $request)
     {
-        $user = Auth::guard('sanctum')->user();
-        $token = $request->header('Authorization');
+        $user = User::where('email', $request->input('email'))->first();
+
+        if (!$user) {
+            return ApiTrait::errorMessage([], 'User not found', 404);
+        }
+
         $now = now();
-        
+
         if ($user->code != $request->code) {
             return ApiTrait::errorMessage(['code' => 'Wrong Code'], "Invalid Code", 422);
         }
-        
+
         if ($now > $user->code_expired_at) {
             return ApiTrait::errorMessage(['code' => 'Expired Code'], "Invalid Code", 422);
         }
-        
+
         $user->email_verified_at = $now;
         $user->save();
-        $token = str_replace('Bearer ', '', $token);
 
-        $user->token = $token;
-        
-        return ApiTrait::data(['data' => ['user' => $user]], "Correct Code", 200);
+        // Generate a new token for the user
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        // Return user data and token
+        $userData = $user->only($user->responseFields());
+        $userData['token'] = $token;
+
+        return ApiTrait::data(['user' => $userData], "Correct Code", 200);
     }
 }
-
-

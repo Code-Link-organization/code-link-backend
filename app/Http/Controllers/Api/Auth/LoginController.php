@@ -15,7 +15,7 @@ class LoginController extends Controller
     public function login(LoginRequest $request)
     {
         $user = User::where('email', $request->email)->first();
-
+    
         if (!$user || !Hash::check($request->password, $user->password)) {
             return ApiTrait::errorMessage(
                 ['login' => __('Invalid email or password.')],
@@ -23,21 +23,29 @@ class LoginController extends Controller
                 401
             );
         }
-
-        $token = $user->createToken('auth_token')->plainTextToken;
-        $user->token = $token;
-
+    
+        $responseData = [
+            'user' => $user->only($user->responseFields()),
+        ];
+    
         if (!$user->email_verified_at) {
             return ApiTrait::data(
-                compact('user'),
+                $responseData,
                 __('Your account is not verified. Please verify your email.'),
                 401
             );
         }
-
+    
+        $token = $user->createToken('auth_token')->plainTextToken;
+        $responseData['user']['token'] = $token;
+    
         return ApiTrait::data(
-            compact('user'), ('Login successful.'), 200);
+            $responseData,
+            __('Login successful.'),
+            200
+        );
     }
+    
 
     public function logout(Request $request)
     {

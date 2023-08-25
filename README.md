@@ -12,7 +12,7 @@
 1- Clone the project
 
 ```bash
-  git clone https://github.com/EmanElhelaly11/CodeLink.git
+  git clone https://github.com/Code-Link-organization/code-link-backend.git
 ```
 
 2- Set up the configuration
