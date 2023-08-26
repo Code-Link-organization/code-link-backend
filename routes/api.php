@@ -29,7 +29,7 @@ Route::prefix('user')->group(function () {
     Route::post('/signup', SignupController::class);  
 
     Route::group(['controller' => EmailVerificationController::class], function () {
-        // Route::post('/send-mail', 'sendEmail'); 
+        Route::post('/send-mail', 'sendEmail'); 
         Route::post('/check-code', 'verifyEmail');
     });
 
@@ -45,7 +45,7 @@ Route::prefix('user')->group(function () {
 });
 
 Route::group(['prefix'=>'user','controller'=>ResetPasswordController::class],function(){
-    Route::post('/check-email','checkEmail');
+    // Route::post('/check-email','checkEmail');
     Route::post('/reset-password','resetPassword')-> middleware('auth:sanctum'); //auth
 });
 
