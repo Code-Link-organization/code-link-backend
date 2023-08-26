@@ -29,7 +29,7 @@ Route::prefix('user')->group(function () {
     Route::post('/signup', SignupController::class);  
 
     Route::group(['controller' => EmailVerificationController::class], function () {
-        Route::post('/send-mail', 'sendEmail'); 
+        // Route::post('/send-mail', 'sendEmail'); 
         Route::post('/check-code', 'verifyEmail');
     });
 
@@ -56,7 +56,8 @@ Route::group(['prefix' => 'teams', 'middleware' => ['auth:sanctum'], 'controller
     Route::post('/edit/{id}', 'updateTeam');
     Route::post('/delete/{id}', 'destroyTeam');
 
-    // Route::post('/join/{id}', 'joinTeam');
-    // Route::post('/leave/{id}', 'leaveTeam');
-    // Route::post('/invite/{id}', 'inviteTeam');
+    Route::post('/join/{id}', 'joinTeam');
+    Route::post('/leave/{id}', 'leaveTeam');
+    Route::post('/invite/{id}', 'inviteTeam');
+    Route::post('/remove-member/{id}', 'removeMember');
 });

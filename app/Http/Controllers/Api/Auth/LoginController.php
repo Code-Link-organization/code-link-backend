@@ -20,7 +20,7 @@ class LoginController extends Controller
             return ApiTrait::errorMessage(
                 ['login' => __('Invalid email or password.')],
                 __('Login failed. Please check your credentials.'),
-                401
+                403
             );
         }
     

@@ -91,7 +91,6 @@ public function updateTeam(Request $request, $id)
 }
 
 
-
     public function destroyTeam($id)
     {
         $team = Team::findOrFail($id);
@@ -109,24 +108,7 @@ public function updateTeam(Request $request, $id)
         }
     }
 
-    public function joinTeam($id)
-    {
-        $team = Team::findOrFail($id);
-        $user = Auth::user();
-
-        if ($team->is_full) {
-            return $this->errorMessage([], 'This team is already full.', 422);
-        }
-
-        $user->teams()->attach($team->id);
-        $team->increment('member_count');
-
-        if ($team->member_count >= Team::MAX_MEMBERS) {
-            $team->update(['is_full' => true]);
-        }
-
-        return $this->successMessage('Joined the team successfully.', 200);
-    }
+   
 
     public function leaveTeam($id)
     {
@@ -142,6 +124,31 @@ public function updateTeam(Request $request, $id)
         $team->update(['is_full' => false]);
 
         return $this->successMessage('Left the team successfully.', 200);
+    }
+
+    public function removeMember($teamId, $userId)
+    {
+        $team = Team::findOrFail($teamId);
+        $user = Auth::user();
+
+        if ($team->leader_id !== $user->id) {
+            return $this->errorMessage([], 'You are not authorized to remove members from this team.', 403);
+        }
+
+        $member = User::find($userId);
+
+        if (!$member) {
+            return $this->errorMessage([], 'Member not found.', 404);
+        }
+
+        if (!$member->teams->contains($team->id)) {
+            return $this->errorMessage([], 'This user is not a member of the team.', 404);
+        }
+
+        $member->teams()->detach($team->id);
+        $team->decrement('member_count');
+
+        return $this->successMessage('Member removed from the team.', 200);
     }
 
     public function inviteTeam(TeamRequest $request, $id)
@@ -166,4 +173,20 @@ public function updateTeam(Request $request, $id)
 
         return $this->successMessage('User invited to the team.', 200);
     }
+
+    public function joinTeam($id)
+    {
+        $team = Team::findOrFail($id);
+        $user = Auth::user();
+    
+        if ($team->is_full) {
+            return $this->errorMessage([], 'This team is already full.', 422);
+        }
+    
+        $user->teams()->attach($team->id);
+        $team->increment('member_count');
+    
+        return $this->successMessage('Joined the team successfully.', 200);
+    }
+
 }
