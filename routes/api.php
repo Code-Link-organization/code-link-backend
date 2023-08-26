@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\SignupController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\Auth\EmailVerificationController;
+use App\Http\Controllers\Api\TeamController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,4 +47,16 @@ Route::prefix('user')->group(function () {
 Route::group(['prefix'=>'user','controller'=>ResetPasswordController::class],function(){
     Route::post('/check-email','checkEmail');
     Route::post('/reset-password','resetPassword')-> middleware('auth:sanctum'); //auth
+});
+
+Route::group(['prefix' => 'teams', 'middleware' => ['auth:sanctum'], 'controller' => TeamController::class], function () {
+    Route::get('/', 'index');
+    Route::get('/show/{id}', 'showTeam');
+    Route::post('/create', 'storeTeam');
+    Route::post('/edit/{id}', 'updateTeam');
+    Route::post('/delete/{id}', 'destroyTeam');
+
+    // Route::post('/join/{id}', 'joinTeam');
+    // Route::post('/leave/{id}', 'leaveTeam');
+    // Route::post('/invite/{id}', 'inviteTeam');
 });

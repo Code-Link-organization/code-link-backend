@@ -63,6 +63,6 @@ class EmailVerificationController extends Controller
         $userData = $user->only($user->responseFields());
         $userData['token'] = $token;
 
-        return ApiTrait::data(['user' => $userData], "Correct Code", 200);
+        return ApiTrait::data(['user' => $userData], "Email address has been verified successfully", 200);
     }
 }
