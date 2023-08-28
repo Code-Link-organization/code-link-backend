@@ -108,7 +108,6 @@ public function updateTeam(Request $request, $id)
         }
     }
 
-   
 
     public function leaveTeam($id)
     {
@@ -149,44 +148,6 @@ public function updateTeam(Request $request, $id)
         $team->decrement('member_count');
 
         return $this->successMessage('Member removed from the team.', 200);
-    }
-
-    public function inviteTeam(TeamRequest $request, $id)
-    {
-        $team = Team::findOrFail($id);
-        $user = Auth::user();
-
-        if ($team->leader_id !== $user->id) {
-            return $this->errorMessage([], 'You are not authorized to invite to this team.', 403);
-        }
-
-        $data = $request->validate([
-            'user_id' => 'required|exists:users,id',
-        ]);
-
-        $invitee = User::find($data['user_id']);
-        if (!$invitee) {
-            return $this->errorMessage([], 'User not found.', 404);
-        }
-
-        $invitee->invitations()->attach($team->id);
-
-        return $this->successMessage('User invited to the team.', 200);
-    }
-
-    public function joinTeam($id)
-    {
-        $team = Team::findOrFail($id);
-        $user = Auth::user();
-    
-        if ($team->is_full) {
-            return $this->errorMessage([], 'This team is already full.', 422);
-        }
-    
-        $user->teams()->attach($team->id);
-        $team->increment('member_count');
-    
-        return $this->successMessage('Joined the team successfully.', 200);
     }
 
 }

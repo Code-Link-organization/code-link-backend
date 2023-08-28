@@ -20,4 +20,16 @@ class Team extends Model
     {
         return $this->belongsToMany(User::class, 'team_user', 'team_id', 'user_id');
     }
+
+    public function teamRequests()
+    {
+        return $this->hasMany(TeamRequest::class);
+    }
+
+    public function invitedUsers()
+    {
+        return $this->belongsToMany(User::class, 'team_requests', 'team_id', 'user_id')
+            ->wherePivot('type', 'invite')
+            ->wherePivot('status', 'pending');
+    }
 }

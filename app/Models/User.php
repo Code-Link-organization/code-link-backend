@@ -53,4 +53,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Team::class)->withTimestamps();
     }
+
+    public function teamRequests()
+    {
+        return $this->hasMany(TeamRequest::class);
+    }
+
+    public function sentTeamRequests()
+    {
+        return $this->hasMany(TeamRequest::class, 'user_id');
+    }
 }

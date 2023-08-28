@@ -45,7 +45,6 @@ Route::prefix('user')->group(function () {
 });
 
 Route::group(['prefix'=>'user','controller'=>ResetPasswordController::class],function(){
-    // Route::post('/check-email','checkEmail');
     Route::post('/reset-password','resetPassword')-> middleware('auth:sanctum'); //auth
 });
 
@@ -56,8 +55,7 @@ Route::group(['prefix' => 'teams', 'middleware' => ['auth:sanctum'], 'controller
     Route::post('/edit/{id}', 'updateTeam');
     Route::post('/delete/{id}', 'destroyTeam');
 
-    Route::post('/join/{id}', 'joinTeam');
-    Route::post('/leave/{id}', 'leaveTeam');
-    Route::post('/invite/{id}', 'inviteTeam');
-    Route::post('/remove-member/{id}', 'removeMember');
+    Route::post('/leave/{teamId}', 'leaveTeam');
+    Route::post('/remove-member/{teamId}/{userId}', 'removeMember'); //Leader only can remove member
+
 });
