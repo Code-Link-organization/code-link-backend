@@ -4,7 +4,7 @@ namespace App\Traits;
 use GrahamCampbell\ResultType\Success;
 
 trait ApiTrait{
-    public static function successMessage(string $message = "", int $statusCode = 200, $data = [])
+    public static function successMessage(string $message = "", int $statusCode = 200, $data = '{}')
 {
     return response()->json([
         'result' => true,
@@ -26,13 +26,14 @@ trait ApiTrait{
     }
 
 
-    public static function data(array $data,string $message = "",int $statusCode = 200)
+    public static function data(array $data, string $message = "", int $statusCode = 200)
     {
         return response()->json([
-            'result'=>true,
-            'message'=>$message,
-            'data'=>(object)$data,
-            'errors'=>(object)[]
-        ],$statusCode);
+            'result' => true,
+            'message' => $message,
+            'data' => (object) $data,
+            'errors' => (object)[]
+        ], $statusCode);
     }
+    
 }
