@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Auth\SignupController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\Auth\EmailVerificationController;
 use App\Http\Controllers\Api\TeamController;
+use App\Http\Controllers\Api\TeamRequestController;
 
 
 /*
@@ -54,8 +55,11 @@ Route::group(['prefix' => 'teams', 'middleware' => ['auth:sanctum'], 'controller
     Route::post('/create', 'storeTeam');
     Route::post('/edit/{id}', 'updateTeam');
     Route::post('/delete/{id}', 'destroyTeam');
-
     Route::post('/leave/{teamId}', 'leaveTeam');
     Route::post('/remove-member/{teamId}/{userId}', 'removeMember'); //Leader only can remove member
+});
 
+Route::group(['prefix' => 'team-requests', 'middleware' => ['auth:sanctum'],'controller' => TeamRequestController::class], function () {
+    Route::post('/invite/{teamId}', 'inviteTeam');
+    Route::post('/join/{teamId}', 'joinTeam');
 });
