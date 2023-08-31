@@ -63,4 +63,54 @@ class User extends Authenticatable
     {
         return $this->hasMany(TeamRequest::class, 'user_id');
     }
+
+    public function profile()
+    {
+        return $this->hasOne(UserProfile::class);
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'user_followers', 'user_id', 'follower_id');
+    }
+
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'user_followers', 'follower_id', 'user_id');
+    }
+
+    public function administeredTracks()
+    {
+        return $this->hasMany(Track::class, 'admin_id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(PostComment::class);
+    }
+
+    public function communities()
+    {
+        return $this->belongsToMany(Community::class, 'community_users');
+    }
+    
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
+
+    public function mentor()
+    {
+        return $this->hasOne(Mentor::class);
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
 }
