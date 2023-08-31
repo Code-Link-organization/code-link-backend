@@ -199,4 +199,42 @@ public function acceptJoinRequest(TeamRequest $teamRequest, $id)
         return $user->id === $teamRequest->user_id;
     }
 //===================================================================
+
+public function removeJoinRequest($id)
+{
+    return $this->removeRequestOfType($id, 'join');
+}
+
+public function removeInviteRequest($id)
+{
+    return $this->removeRequestOfType($id, 'invite');
+}
+
+protected function removeRequestOfType($id, $type)
+{
+    $user = Auth::user();
+    $teamRequest = TeamRequest::findOrFail($id);
+
+    // Check if the request type matches
+    if ($teamRequest->type !== $type) {
+        return $this->errorMessage([], 'Invalid request type.', 400);
+    }
+
+    if ($type === 'join') {
+        // Regular users can remove join requests
+        if ($user->id !== $teamRequest->user_id) {
+            return $this->errorMessage([], 'You are not authorized to remove this request.', 403);
+        }
+    } elseif ($type === 'invite') {
+        // Team leader can remove invite requests
+        if ($user->id !== $teamRequest->team->leader_id) {
+            return $this->errorMessage([], 'You are not authorized to remove this request.', 403);
+        }
+    }
+
+    // Remove the request
+    $teamRequest->delete();
+
+    return $this->successMessage('Request removed successfully.', 200);
+}
 }
