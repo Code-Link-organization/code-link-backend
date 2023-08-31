@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->unsignedBigInteger('leader_id');
             $table->foreign('leader_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('member_count')->default(0);
+            $table->integer('members_count')->default(0);
             $table->boolean('is_full')->default(false);
             $table->timestamps();
         });

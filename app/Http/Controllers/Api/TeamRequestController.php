@@ -111,7 +111,7 @@ public function acceptJoinRequest(TeamRequest $teamRequest, $id)
 
     // Increment the member count of the team
     $team = $teamRequest->team;
-    $team->increment('member_count');
+    $team->increment('members_count');
 
     // Attach the user to the team
     $user = $teamRequest->user;
@@ -160,7 +160,7 @@ public function acceptJoinRequest(TeamRequest $teamRequest, $id)
 
         // Increment the member count of the team
         $team = $teamRequest->team;
-        $team->increment('member_count');
+        $team->increment('members_count');
 
        // Attach the user to the team
        $user = $teamRequest->user;
