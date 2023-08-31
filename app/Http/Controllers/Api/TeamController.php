@@ -41,7 +41,7 @@ public function storeTeam(Request $request)
             'name' => $data['name'],
             'description' => $data['description'],
             'leader_id' => $user->id, 
-            'member_count' => 1,
+            'members_count' => 1,
         ]);
 
         $user->teams()->attach($team->id);
@@ -119,7 +119,7 @@ public function updateTeam(Request $request, $id)
         }
 
         $user->teams()->detach($team->id);
-        $team->decrement('member_count');
+        $team->decrement('members_count');
         $team->update(['is_full' => false]);
 
         return $this->successMessage('Left the team successfully.', 200);
@@ -145,7 +145,7 @@ public function updateTeam(Request $request, $id)
         }
 
         $member->teams()->detach($team->id);
-        $team->decrement('member_count');
+        $team->decrement('members_count');
 
         return $this->successMessage('Member removed from the team.', 200);
     }

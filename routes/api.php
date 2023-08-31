@@ -59,7 +59,19 @@ Route::group(['prefix' => 'teams', 'middleware' => ['auth:sanctum'], 'controller
     Route::post('/remove-member/{teamId}/{userId}', 'removeMember'); //Leader only can remove member
 });
 
-Route::group(['prefix' => 'team-requests', 'middleware' => ['auth:sanctum'],'controller' => TeamRequestController::class], function () {
+Route::group(['prefix' => 'team-requests/', 'middleware' => ['auth:sanctum'],'controller' => TeamRequestController::class], function () {
     Route::post('/invite/{teamId}', 'inviteTeam');
     Route::post('/join/{teamId}', 'joinTeam');
+
+    // Remove Requests
+    Route::post('remove-join-request/{id}', 'removeJoinRequest'); //User
+    Route::post('/remove-invite-request/{id}','removeInviteRequest'); //Leader
+    
+    // Accept and reject join requests - Leader
+    Route::post('/accept-join/{id}', 'acceptJoinRequest');
+    Route::post('/reject-join/{id}', 'rejectJoinRequest');
+    
+    // Accept and reject invite requests - User
+    Route::post('/accept-invite/{id}', 'acceptInviteRequest');
+    Route::post('/reject-invite/{id}', 'rejectInviteRequest');
 });

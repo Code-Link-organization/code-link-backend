@@ -8,30 +8,27 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
-        Schema::create('teams', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('courseUrl');
             $table->text('description');
-            $table->unsignedBigInteger('leader_id');
-            $table->foreign('leader_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('members_count')->default(0);
-            $table->boolean('is_full')->default(false);
+            $table->unsignedBigInteger('track_id');
+            $table->foreign('track_id')->references('id')->on('tracks');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
+
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('teams');
+        Schema::dropIfExists('courses');
     }
 };

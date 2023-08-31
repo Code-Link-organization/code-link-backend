@@ -90,5 +90,151 @@ class TeamRequestController extends Controller
 
         return $this->successMessage('Join request sent to the team.', 200);
     }
+//==============================================================
 
+public function acceptJoinRequest(TeamRequest $teamRequest, $id)
+{
+    $teamRequest = TeamRequest::findOrFail($id);
+
+    if ($teamRequest->type !== 'join') {
+        return $this->errorMessage([], 'Invalid request type.', 400);
+    }
+
+    // Check if the user is the leader of the team associated with the request
+    if (!$this->isTeamLeader(Auth::user(), $teamRequest->team)) {
+        return $this->errorMessage([], 'You are not authorized to accept this join request.', 403);
+    }
+
+    // Update the status of the request and handle accepted request
+    $teamRequest->status = 'accepted';
+    $teamRequest->save();
+
+    // Increment the member count of the team
+    $team = $teamRequest->team;
+    $team->increment('members_count');
+
+    // Attach the user to the team
+    $user = $teamRequest->user;
+    $user->teams()->attach($team->id);
+
+    return $this->successMessage('Join request accepted successfully.', 200);
+}
+
+
+    public function rejectJoinRequest($id)
+    {
+        $teamRequest = TeamRequest::findOrFail($id);
+
+        if ($teamRequest->type !== 'join') {
+            return $this->errorMessage([], 'Invalid request type.', 400);
+        }
+
+        // Check if the user is the leader of the team associated with the request
+        if (!$this->isTeamLeader(Auth::user(), $teamRequest->team)) {
+            return $this->errorMessage([], 'You are not authorized to reject this join request.', 403);
+        }
+
+        // Update the status of the request and handle rejected request
+        $teamRequest->status = 'rejected';
+        $teamRequest->save();
+
+        return $this->successMessage('Join request rejected successfully.', 200);
+    }
+
+    public function acceptInviteRequest(TeamRequest $teamRequest, $id)
+    {
+        $teamRequest = TeamRequest::findOrFail($id);
+
+        if ($teamRequest->type !== 'invite') {
+            return $this->errorMessage([], 'Invalid request type.', 400);
+        }
+
+        // Check if the user who was invited is the authenticated user
+        if (!$this->isInvitedUser(Auth::user(), $teamRequest)) {
+            return $this->errorMessage([], 'You are not authorized to accept this invite request.', 403);
+        }
+
+        // Update the status of the request and handle accepted request
+        $teamRequest->status = 'accepted';
+        $teamRequest->save();
+
+        // Increment the member count of the team
+        $team = $teamRequest->team;
+        $team->increment('members_count');
+
+       // Attach the user to the team
+       $user = $teamRequest->user;
+       $user->teams()->attach($team->id);
+
+        return $this->successMessage('Invite request accepted successfully.', 200);
+    }
+
+    public function rejectInviteRequest($id)
+    {
+        $teamRequest = TeamRequest::findOrFail($id);
+
+        if ($teamRequest->type !== 'invite') {
+            return $this->errorMessage([], 'Invalid request type.', 400);
+        }
+
+        // Check if the user who was invited is the authenticated user
+        if (!$this->isInvitedUser(Auth::user(), $teamRequest)) {
+            return $this->errorMessage([], 'You are not authorized to reject this invite request.', 403);
+        }
+
+        // Update the status of the request and handle rejected request
+        $teamRequest->status = 'rejected';
+        $teamRequest->save();
+
+        return $this->successMessage('Invite request rejected successfully.', 200);
+    }
+
+    protected function isTeamLeader($user, $team)
+    {
+        return $user->id === $team->leader_id;
+    }
+
+    protected function isInvitedUser($user, $teamRequest)
+    {
+        return $user->id === $teamRequest->user_id;
+    }
+//===================================================================
+
+public function removeJoinRequest($id)
+{
+    return $this->removeRequestOfType($id, 'join');
+}
+
+public function removeInviteRequest($id)
+{
+    return $this->removeRequestOfType($id, 'invite');
+}
+
+protected function removeRequestOfType($id, $type)
+{
+    $user = Auth::user();
+    $teamRequest = TeamRequest::findOrFail($id);
+
+    // Check if the request type matches
+    if ($teamRequest->type !== $type) {
+        return $this->errorMessage([], 'Invalid request type.', 400);
+    }
+
+    if ($type === 'join') {
+        // Regular users can remove join requests
+        if ($user->id !== $teamRequest->user_id) {
+            return $this->errorMessage([], 'You are not authorized to remove this request.', 403);
+        }
+    } elseif ($type === 'invite') {
+        // Team leader can remove invite requests
+        if ($user->id !== $teamRequest->team->leader_id) {
+            return $this->errorMessage([], 'You are not authorized to remove this request.', 403);
+        }
+    }
+
+    // Remove the request
+    $teamRequest->delete();
+
+    return $this->successMessage('Request removed successfully.', 200);
+}
 }
