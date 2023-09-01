@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\TrackController;
 use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\MentorController;
 use App\Http\Controllers\Api\CourseController;
+use App\Http\Controllers\Api\CommunityController;
 
 
 /*
@@ -121,4 +122,14 @@ Route::group(['prefix' => 'courses', 'middleware' => ['auth:sanctum'], 'controll
     Route::get('/show/{id}', 'showCorse');
     Route::post('/edit/{id}', 'editCourse');
     Route::post('/delete/{id}', 'destroyCourse');
+});
+Route::group(['prefix' => 'communities', 'middleware' => ['auth:sanctum'], 'controller' => CommunityController::class], function () {
+    Route::get('/', 'index');
+    Route::post('/create', 'createCommunity');
+    Route::get('/show/{id}', 'showCommunity');
+    Route::post('/edit/{id}', 'editCommunity');
+    Route::post('/joinCommunity/{id}', 'joinCommunity');
+    Route::post('/leaveCommunity/{id}', 'leaveCommunity');
+    Route::post('/sendInvitation/{id}', 'sendInvitation');
+    Route::post('/delete/{id}', 'destroyCommunity');
 });
