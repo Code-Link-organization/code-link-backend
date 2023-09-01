@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\Auth\EmailVerificationController;
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TeamRequestController;
+use App\Http\Controllers\Api\TrackController;
 
 
 /*
@@ -27,10 +28,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::prefix('user')->group(function () {
-    Route::post('/signup', SignupController::class);  
+    Route::post('/signup', SignupController::class);
 
     Route::group(['controller' => EmailVerificationController::class], function () {
-        Route::post('/send-mail', 'sendEmail'); 
+        Route::post('/send-mail', 'sendEmail');
         Route::post('/check-code', 'verifyEmail');
     });
 
@@ -40,13 +41,12 @@ Route::prefix('user')->group(function () {
             Route::get('/logout', 'logout'); //auth
         });
 
-        Route::post('/login', 'login'); 
+        Route::post('/login', 'login');
     });
-
 });
 
-Route::group(['prefix'=>'user','controller'=>ResetPasswordController::class],function(){
-    Route::post('/reset-password','resetPassword')-> middleware('auth:sanctum'); //auth
+Route::group(['prefix' => 'user', 'controller' => ResetPasswordController::class], function () {
+    Route::post('/reset-password', 'resetPassword')->middleware('auth:sanctum'); //auth
 });
 
 Route::group(['prefix' => 'teams', 'middleware' => ['auth:sanctum'], 'controller' => TeamController::class], function () {
@@ -59,19 +59,28 @@ Route::group(['prefix' => 'teams', 'middleware' => ['auth:sanctum'], 'controller
     Route::post('/remove-member/{teamId}/{userId}', 'removeMember'); //Leader only can remove member
 });
 
-Route::group(['prefix' => 'team-requests/', 'middleware' => ['auth:sanctum'],'controller' => TeamRequestController::class], function () {
+Route::group(['prefix' => 'team-requests/', 'middleware' => ['auth:sanctum'], 'controller' => TeamRequestController::class], function () {
     Route::post('/invite/{teamId}', 'inviteTeam');
     Route::post('/join/{teamId}', 'joinTeam');
 
     // Remove Requests
     Route::post('remove-join-request/{id}', 'removeJoinRequest'); //User
-    Route::post('/remove-invite-request/{id}','removeInviteRequest'); //Leader
-    
+    Route::post('/remove-invite-request/{id}', 'removeInviteRequest'); //Leader
+
     // Accept and reject join requests - Leader
     Route::post('/accept-join/{id}', 'acceptJoinRequest');
     Route::post('/reject-join/{id}', 'rejectJoinRequest');
-    
+
     // Accept and reject invite requests - User
     Route::post('/accept-invite/{id}', 'acceptInviteRequest');
     Route::post('/reject-invite/{id}', 'rejectInviteRequest');
+});
+
+
+Route::group(['prefix' => 'tracks', 'middleware' => ['auth:sanctum'], 'controller' => TrackController::class], function () {
+    Route::get('/', 'index');
+    Route::post('/create', 'createTrack');
+    Route::get('/show/{id}', 'showTrack');
+    Route::post('/edit/{id}', 'editTrack');
+    Route::post('/delete/{id}', 'destroyTrack');
 });
