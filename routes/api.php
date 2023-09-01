@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Auth\EmailVerificationController;
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TeamRequestController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\TrackController;
 
 
 /*
@@ -84,4 +85,12 @@ Route::group(['prefix' => 'posts', 'middleware' => ['auth:sanctum'],'controller'
     Route::get('/show/{id}', 'showPost');
     Route::post('/edit/{id}', 'editPost');
     Route::post('/delete/{id}', 'deletePost');
+});
+
+Route::group(['prefix' => 'tracks', 'middleware' => ['auth:sanctum'], 'controller' => TrackController::class], function () {
+    Route::get('/', 'index');
+    Route::post('/create', 'createTrack');
+    Route::get('/show/{id}', 'showTrack');
+    Route::post('/edit/{id}', 'editTrack');
+    Route::post('/delete/{id}', 'destroyTrack');
 });
