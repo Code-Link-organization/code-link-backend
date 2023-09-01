@@ -131,5 +131,5 @@ Route::group(['prefix' => 'communities', 'middleware' => ['auth:sanctum'], 'cont
     Route::post('/joinCommunity/{id}', 'joinCommunity');
     Route::post('/leaveCommunity/{id}', 'leaveCommunity');
     Route::post('/sendInvitation/{id}', 'sendInvitation');
-    Route::post('/delete/{id}', 'destroyCommunity');
+    Route::post('/delete/{id}', 'deleteCommunity');
 });
