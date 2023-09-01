@@ -30,6 +30,9 @@ class SearchController extends Controller
     public function searchUserprofile($id)
     {
     }
+    public function searchMyprofile($id)
+    {
+    }
 
 
     public function searchChat($id)
