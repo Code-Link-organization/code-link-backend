@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\TrackController;
 use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\MentorController;
+use App\Http\Controllers\Api\CourseController;
 
 
 /*
@@ -107,10 +108,17 @@ Route::group(['prefix' => 'search', 'middleware' => ['auth:sanctum'], 'controlle
     Route::get('/chat/{id}', 'searchChat');
     
 });
-Route::group(['prefix' => 'tracks', 'middleware' => ['auth:sanctum'], 'controller' => MentorController::class], function () {
+Route::group(['prefix' => 'mentors', 'middleware' => ['auth:sanctum'], 'controller' => MentorController::class], function () {
     Route::get('/', 'index');
     Route::post('/create', 'createMentor');
     Route::get('/show/{id}', 'showMentor');
     Route::post('/edit/{id}', 'editMentor');
     Route::post('/delete/{id}', 'deleteMentor');
+});
+Route::group(['prefix' => 'courses', 'middleware' => ['auth:sanctum'], 'controller' => CourseController::class], function () {
+    Route::get('/', 'index');
+    Route::post('/create', 'createCourse');
+    Route::get('/show/{id}', 'showCorse');
+    Route::post('/edit/{id}', 'editCourse');
+    Route::post('/delete/{id}', 'deleteCourse');
 });
