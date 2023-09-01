@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\Auth\EmailVerificationController;
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TeamRequestController;
+
 use App\Http\Controllers\Api\TrackController;
 
 
@@ -75,7 +76,6 @@ Route::group(['prefix' => 'team-requests/', 'middleware' => ['auth:sanctum'], 'c
     Route::post('/accept-invite/{id}', 'acceptInviteRequest');
     Route::post('/reject-invite/{id}', 'rejectInviteRequest');
 });
-
 
 Route::group(['prefix' => 'tracks', 'middleware' => ['auth:sanctum'], 'controller' => TrackController::class], function () {
     Route::get('/', 'index');
