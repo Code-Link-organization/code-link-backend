@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\TeamRequestController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\TrackController;
 use App\Http\Controllers\Api\SearchController;
+use App\Http\Controllers\Api\MentorController;
 
 
 /*
@@ -105,4 +106,11 @@ Route::group(['prefix' => 'search', 'middleware' => ['auth:sanctum'], 'controlle
     Route::get('/myprofile/{id}', 'searchMyprofile');
     Route::get('/chat/{id}', 'searchChat');
     
+});
+Route::group(['prefix' => 'tracks', 'middleware' => ['auth:sanctum'], 'controller' => MentorController::class], function () {
+    Route::get('/', 'index');
+    Route::post('/create', 'createMentor');
+    Route::get('/show/{id}', 'showMentor');
+    Route::post('/edit/{id}', 'editMentor');
+    Route::post('/delete/{id}', 'deleteMentor');
 });

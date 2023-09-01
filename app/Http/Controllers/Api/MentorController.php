@@ -34,7 +34,7 @@ class MentorController extends Controller
 
    
 
-    public function destroyMentor($id)
+    public function deleteMentor($id)
     {
         
     }
