@@ -40,7 +40,5 @@ class SearchController extends Controller
     }
 
 
-    public function searchNotification($id)
-    {
-    }
+    
 }
