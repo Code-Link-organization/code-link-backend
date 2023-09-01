@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TeamRequestController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\TrackController;
+use App\Http\Controllers\Api\SearchController;
 
 
 /*
@@ -93,4 +94,15 @@ Route::group(['prefix' => 'tracks', 'middleware' => ['auth:sanctum'], 'controlle
     Route::get('/show/{id}', 'showTrack');
     Route::post('/edit/{id}', 'editTrack');
     Route::post('/delete/{id}', 'destroyTrack');
+});
+
+Route::group(['prefix' => 'search', 'middleware' => ['auth:sanctum'], 'controller' => SearchController::class], function () {
+    Route::get('/post/{id}', 'searchPost');
+    Route::get('/team//{id}', 'searchTeam');
+    Route::get('/mentor/{id}', 'searchMentor');
+    Route::get('/community/{id}', 'searchCommunity');
+    Route::get('/userprofile/{id}', 'searchUesrprofile');
+    Route::get('/myprofile/{id}', 'searchMyprofile');
+    Route::get('/chat/{id}', 'searchChat');
+    
 });
