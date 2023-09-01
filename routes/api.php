@@ -113,12 +113,12 @@ Route::group(['prefix' => 'mentors', 'middleware' => ['auth:sanctum'], 'controll
     Route::post('/create', 'createMentor');
     Route::get('/show/{id}', 'showMentor');
     Route::post('/edit/{id}', 'editMentor');
-    Route::post('/delete/{id}', 'deleteMentor');
+    Route::post('/delete/{id}', 'destroyMentor');
 });
 Route::group(['prefix' => 'courses', 'middleware' => ['auth:sanctum'], 'controller' => CourseController::class], function () {
     Route::get('/', 'index');
     Route::post('/create', 'createCourse');
     Route::get('/show/{id}', 'showCorse');
     Route::post('/edit/{id}', 'editCourse');
-    Route::post('/delete/{id}', 'deleteCourse');
+    Route::post('/delete/{id}', 'destroyCourse');
 });
