@@ -14,6 +14,8 @@ use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\MentorController;
 use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\CommunityController;
+use App\Http\Controllers\Api\UserController;
+
 
 
 /*
@@ -119,7 +121,7 @@ Route::group(['prefix' => 'mentors', 'middleware' => ['auth:sanctum'], 'controll
 Route::group(['prefix' => 'courses', 'middleware' => ['auth:sanctum'], 'controller' => CourseController::class], function () {
     Route::get('/', 'index');
     Route::post('/create', 'createCourse');
-    Route::get('/show/{id}', 'showCorse');
+    Route::get('/show/{id}', 'showCourse');
     Route::post('/edit/{id}', 'editCourse');
     Route::post('/delete/{id}', 'destroyCourse');
 });
@@ -131,5 +133,13 @@ Route::group(['prefix' => 'communities', 'middleware' => ['auth:sanctum'], 'cont
     Route::post('/joinCommunity/{id}', 'joinCommunity');
     Route::post('/leaveCommunity/{id}', 'leaveCommunity');
     Route::post('/sendInvitation/{id}', 'sendInvitation');
-    Route::post('/delete/{id}', 'deleteCommunity');
+    Route::post('/delete/{id}', 'destroyCommunity');
+});
+
+Route::group(['prefix' => 'users', 'middleware' => ['auth:sanctum'], 'controller' => UserController::class], function () {
+    Route::get('/', 'index');
+    Route::post('/create', 'createUser');
+    Route::get('/show/{id}', 'showUser');
+    Route::post('/edit/{id}', 'editUser');
+    Route::post('/delete/{id}', 'destroyUser');
 });
