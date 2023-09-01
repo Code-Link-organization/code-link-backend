@@ -77,6 +77,9 @@ Route::group(['prefix' => 'team-requests/', 'middleware' => ['auth:sanctum'], 'c
     Route::post('/reject-invite/{id}', 'rejectInviteRequest');
 });
 
+
+
+
 Route::group(['prefix' => 'tracks', 'middleware' => ['auth:sanctum'], 'controller' => TrackController::class], function () {
     Route::get('/', 'index');
     Route::post('/create', 'createTrack');
