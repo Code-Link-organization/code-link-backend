@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\MentorController;
 use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\CommunityController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\NotificationController;
 
 
 
@@ -142,4 +143,11 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth:sanctum'], 'controller
     Route::get('/show/{id}', 'showUser');
     Route::post('/edit/{id}', 'editUser');
     Route::post('/delete/{id}', 'destroyUser');
+});
+Route::group(['prefix' => 'notifications', 'middleware' => ['auth:sanctum'], 'controller' => NotifcationController::class], function () {
+    Route::get('/', 'index');
+    Route::post('/create', 'createNotification');
+    Route::get('/show/{id}', 'showNotification');
+    Route::post('/edit/{id}', 'editNotification');
+    Route::post('/delete/{id}', 'destroyNotification');
 });

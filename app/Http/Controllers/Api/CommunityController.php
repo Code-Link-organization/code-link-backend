@@ -44,7 +44,7 @@ class CommunityController extends Controller
     {
         
     }
-    public function deleteCommunity($id)
+    public function destroyCommunity($id)
     {
        
     }
