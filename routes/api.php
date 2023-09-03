@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\CommunityController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\NotificationController;
+use App\Http\Controllers\Api\DashboardController;
 
 
 
@@ -150,4 +151,13 @@ Route::group(['prefix' => 'notifications', 'middleware' => ['auth:sanctum'], 'co
     Route::get('/show/{id}', 'showNotification');
     Route::post('/edit/{id}', 'editNotification');
     Route::post('/delete/{id}', 'destroyNotification');
+});
+
+Route::group(['prefix' => 'admin', ['auth:sanctum'],'controller' => DashboardController::class], function () {
+    // Admin Dashboard
+    Route::get('/dashboard','index');
+    Route::post('/tracks/store', 'addTrack');
+    Route::post('/communities/store', 'addCommunity');
+    Route::post('/assign-role', 'assignRole');
+
 });
