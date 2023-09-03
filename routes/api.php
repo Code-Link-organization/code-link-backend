@@ -17,7 +17,7 @@ use App\Http\Controllers\Api\CommunityController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\DashboardController;
-
+use App\Http\Controllers\Api\CommentController;
 
 
 /*
@@ -160,4 +160,12 @@ Route::group(['prefix' => 'admin', ['auth:sanctum'],'controller' => DashboardCon
     Route::post('/communities/store', 'addCommunity');
     Route::post('/assign-role', 'assignRole');
 
+});
+
+Route::group(['prefix' => 'comments', 'middleware' => ['auth:sanctum'],'controller' => PostController::class], function () {
+    Route::post('/create', 'createComment');
+    Route::get('/getAll', 'showComments');
+    Route::get('/show/{id}', 'showComment');
+    Route::post('/edit/{id}', 'editComment');
+    Route::post('/delete/{id}', 'deleteComment');
 });
