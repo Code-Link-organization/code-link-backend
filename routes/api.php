@@ -36,21 +36,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+// --------------------------------- Auth Controllers -----------------------------------------
+
 Route::prefix('user')->group(function () {
-    Route::post('/signup', SignupController::class);  
+
+    Route::post('/signup', SignupController::class); //guest
 
     Route::group(['controller' => EmailVerificationController::class], function () {
         Route::post('/send-mail', 'sendEmail'); 
         Route::post('/check-code', 'verifyEmail');
     });
 
-
     Route::controller(LoginController::class)->group(function () {
         Route::middleware('auth:sanctum')->group(function () {
             Route::get('/logout', 'logout'); //auth
         });
 
-        Route::post('/login', 'login'); 
+        Route::post('/login', 'login'); //guest
     });
 
 });
@@ -58,6 +60,8 @@ Route::prefix('user')->group(function () {
 Route::group(['prefix'=>'user','controller'=>ResetPasswordController::class],function(){
     Route::post('/reset-password','resetPassword')-> middleware('auth:sanctum'); //auth
 });
+
+// --------------------------------- Team Controller ------------------------------------------
 
 Route::group(['prefix' => 'teams', 'middleware' => ['auth:sanctum'], 'controller' => TeamController::class], function () {
     Route::get('/', 'index');
@@ -69,12 +73,14 @@ Route::group(['prefix' => 'teams', 'middleware' => ['auth:sanctum'], 'controller
     Route::post('/remove-member/{teamId}/{userId}', 'removeMember'); //Leader only can remove member
 });
 
-Route::group(['prefix' => 'team-requests/', 'middleware' => ['auth:sanctum'],'controller' => TeamRequestController::class], function () {
+// --------------------------------- TeamRequest Controller -----------------------------------
+
+Route::group(['prefix' => 'team-requests', 'middleware' => ['auth:sanctum'],'controller' => TeamRequestController::class], function () {
     Route::post('/invite/{teamId}', 'inviteTeam');
     Route::post('/join/{teamId}', 'joinTeam');
 
     // Remove Requests
-    Route::post('remove-join-request/{id}', 'removeJoinRequest'); //User
+    Route::post('/remove-join-request/{id}', 'removeJoinRequest'); //User
     Route::post('/remove-invite-request/{id}','removeInviteRequest'); //Leader
     
     // Accept and reject join requests - Leader
@@ -86,6 +92,7 @@ Route::group(['prefix' => 'team-requests/', 'middleware' => ['auth:sanctum'],'co
     Route::post('/reject-invite/{id}', 'rejectInviteRequest');
 });
 
+// --------------------------------- Post Controller ---------------------------------------------
 
 Route::group(['prefix' => 'posts', 'middleware' => ['auth:sanctum'],'controller' => PostController::class], function () {
     Route::post('/create', 'createPost');
@@ -95,6 +102,18 @@ Route::group(['prefix' => 'posts', 'middleware' => ['auth:sanctum'],'controller'
     Route::post('/delete/{id}', 'deletePost');
 });
 
+// --------------------------------- Comment Controller ------------------------------------------
+
+Route::group(['prefix' => 'comments', 'middleware' => ['auth:sanctum'],'controller' => CommentController::class], function () {
+    Route::post('/create', 'createComment');
+    Route::get('/getAll', 'showComments');
+    Route::get('/show/{id}', 'showComment');
+    Route::post('/edit/{id}', 'editComment');
+    Route::post('/delete/{id}', 'deleteComment');
+});
+
+// --------------------------------- Track Controller ------------------------------------------
+
 Route::group(['prefix' => 'tracks', 'middleware' => ['auth:sanctum'], 'controller' => TrackController::class], function () {
     Route::get('/', 'index');
     Route::post('/create', 'createTrack');
@@ -102,6 +121,8 @@ Route::group(['prefix' => 'tracks', 'middleware' => ['auth:sanctum'], 'controlle
     Route::post('/edit/{id}', 'editTrack');
     Route::post('/delete/{id}', 'destroyTrack');
 });
+
+// --------------------------------- Search Controller ------------------------------------------
 
 Route::group(['prefix' => 'search', 'middleware' => ['auth:sanctum'], 'controller' => SearchController::class], function () {
     Route::get('/post/{id}', 'searchPost');
@@ -111,8 +132,10 @@ Route::group(['prefix' => 'search', 'middleware' => ['auth:sanctum'], 'controlle
     Route::get('/userprofile/{id}', 'searchUesrprofile');
     Route::get('/myprofile/{id}', 'searchMyprofile');
     Route::get('/chat/{id}', 'searchChat');
-    
 });
+
+// --------------------------------- Mentor Controller ------------------------------------------
+
 Route::group(['prefix' => 'mentors', 'middleware' => ['auth:sanctum'], 'controller' => MentorController::class], function () {
     Route::get('/', 'index');
     Route::post('/create', 'createMentor');
@@ -120,6 +143,9 @@ Route::group(['prefix' => 'mentors', 'middleware' => ['auth:sanctum'], 'controll
     Route::post('/edit/{id}', 'editMentor');
     Route::post('/delete/{id}', 'destroyMentor');
 });
+
+// --------------------------------- Course Controller ------------------------------------------
+
 Route::group(['prefix' => 'courses', 'middleware' => ['auth:sanctum'], 'controller' => CourseController::class], function () {
     Route::get('/', 'index');
     Route::post('/create', 'createCourse');
@@ -127,6 +153,9 @@ Route::group(['prefix' => 'courses', 'middleware' => ['auth:sanctum'], 'controll
     Route::post('/edit/{id}', 'editCourse');
     Route::post('/delete/{id}', 'destroyCourse');
 });
+
+// --------------------------------- Community Controller ------------------------------------------
+
 Route::group(['prefix' => 'communities', 'middleware' => ['auth:sanctum'], 'controller' => CommunityController::class], function () {
     Route::get('/', 'index');
     Route::post('/create', 'createCommunity');
@@ -138,13 +167,16 @@ Route::group(['prefix' => 'communities', 'middleware' => ['auth:sanctum'], 'cont
     Route::post('/delete/{id}', 'destroyCommunity');
 });
 
+// --------------------------------- User Controller -------------------------------------------
+
 Route::group(['prefix' => 'users', 'middleware' => ['auth:sanctum'], 'controller' => UserController::class], function () {
     Route::get('/', 'index');
-    Route::post('/create', 'createUser');
     Route::get('/show/{id}', 'showUser');
     Route::post('/edit/{id}', 'editUser');
     Route::post('/delete/{id}', 'destroyUser');
 });
+// --------------------------------- Notifcation Controller -------------------------------------
+
 Route::group(['prefix' => 'notifications', 'middleware' => ['auth:sanctum'], 'controller' => NotifcationController::class], function () {
     Route::get('/', 'index');
     Route::post('/create', 'createNotification');
@@ -152,6 +184,7 @@ Route::group(['prefix' => 'notifications', 'middleware' => ['auth:sanctum'], 'co
     Route::post('/edit/{id}', 'editNotification');
     Route::post('/delete/{id}', 'destroyNotification');
 });
+// --------------------------------- Dashboard Controller ------------------------------------------
 
 Route::group(['prefix' => 'admin', ['auth:sanctum'],'controller' => DashboardController::class], function () {
     // Admin Dashboard
@@ -159,13 +192,4 @@ Route::group(['prefix' => 'admin', ['auth:sanctum'],'controller' => DashboardCon
     Route::post('/tracks/store', 'addTrack');
     Route::post('/communities/store', 'addCommunity');
     Route::post('/assign-role', 'assignRole');
-
-});
-
-Route::group(['prefix' => 'comments', 'middleware' => ['auth:sanctum'],'controller' => PostController::class], function () {
-    Route::post('/create', 'createComment');
-    Route::get('/getAll', 'showComments');
-    Route::get('/show/{id}', 'showComment');
-    Route::post('/edit/{id}', 'editComment');
-    Route::post('/delete/{id}', 'deleteComment');
 });
