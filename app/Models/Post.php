@@ -4,12 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
 
 class Post extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+
+    protected $fillable = [
+        'content',
+        'user_id',
+        // Add other attributes that you want to be fillable here
+    ];    
 
     public function user()
     {

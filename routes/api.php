@@ -95,8 +95,8 @@ Route::group(['prefix' => 'team-requests', 'middleware' => ['auth:sanctum'],'con
 // --------------------------------- Post Controller ---------------------------------------------
 
 Route::group(['prefix' => 'posts', 'middleware' => ['auth:sanctum'],'controller' => PostController::class], function () {
+    Route::get('/', 'getPosts');
     Route::post('/create', 'createPost');
-    Route::get('/getAll', 'getPosts');
     Route::get('/show/{id}', 'showPost');
     Route::post('/edit/{id}', 'editPost');
     Route::post('/delete/{id}', 'deletePost');

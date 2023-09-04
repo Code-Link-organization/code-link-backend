@@ -45,7 +45,7 @@ class User extends Authenticatable
     // User model
    public function responseFields(){
     return [
-        'id','name', 'email', 'email_verified_at', 'created_at', 'updated_at', 
+        'id','name', 'email', 
     ];
     }
 
