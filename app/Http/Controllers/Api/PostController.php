@@ -50,13 +50,14 @@ class PostController extends Controller
         if ($request->filled('content')) {
             $post->content = $request->input('content');
         }
-    
-        // Handle image upload, if provided
-        if ($request->hasFile('file_path')) {
-            $image = $request->file('file_path');
-            $imagePath = $this->upload($image, 'posts');
-            $post->image_path = $imagePath;
-        }
+           
+    // Handle image upload, if provided
+    if ($request->hasFile('file_path')) {
+        $image = $request->file('file_path');
+        $imagePath = $this->upload($image, 'posts');
+        $post->image_path = "images/posts/$imagePath"; 
+    }
+
     
         $post->save();
         return $this->successMessage('Post created successfully', 201);
@@ -69,11 +70,6 @@ class PostController extends Controller
             return $this->errorMessage([], 'Post not found', 404);
         }
     
-        // Check if both 'content' and 'file_path' are provided
-        if ($request->filled('content') && $request->hasFile('file_path')) {
-            return $this->errorMessage([], 'Either content or an image can be updated, but not both', 422);
-        }
-
         if ($post->user_id !== Auth::id()) {
             return $this->errorMessage([], 'You are not authorized to edit this post', 403);
         }
@@ -88,13 +84,13 @@ class PostController extends Controller
             $post->content = $request->input('content');
         }
     
-        // Handle image update, if provided
-        if ($request->hasFile('file_path')) {
-            $image = $request->file('file_path');
-            $imagePath = $this->upload($image, 'posts');
-            $post->image_path = $imagePath;
-        }
-    
+        // Handle image upload, if provided
+    if ($request->hasFile('file_path')) {
+        $image = $request->file('file_path');
+        $imagePath = $this->upload($image, 'posts');
+        $post->image_path = "images/posts/$imagePath"; 
+    }
+
         $post->save();
     
         if ($request->filled('content') || $request->hasFile('file_path')) {

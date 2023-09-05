@@ -25,7 +25,7 @@ class PostRequest extends FormRequest
     {
         return [
             'content' => 'string|max:1000',
-            'file_path' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the allowed file types and maximum size as needed.
+            'file_path' => 'image|mimes:jpeg,png,jpg,gif|max:4000', // Adjust the allowed file types and maximum size as needed.
         ];
     }
     

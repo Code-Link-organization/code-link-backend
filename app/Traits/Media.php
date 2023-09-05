@@ -5,7 +5,7 @@ trait Media
 {
     public static function upload($image,string $dir) :string
     {
-        $photoName = 'images/'.uniqid() . '.' . $image->extension();
+        $photoName = uniqid() . '.' . $image->extension();
         $image->move(public_path("images/$dir"),$photoName);
         return $photoName;
     }
