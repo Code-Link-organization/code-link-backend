@@ -141,4 +141,31 @@ class PostController extends Controller
         $post->delete();
         return $this->successMessage('Post deleted successfully', 200);
     }
+
+    public function getUserPosts($userId)
+    {
+        // Find the user by their ID
+        $user = User::find($userId);
+    
+        if (!$user) {
+            return $this->errorMessage([], 'User not found', 404);
+        }
+    
+        // Retrieve all posts for the user with the user relationship
+        $posts = $user->posts()->orderBy('created_at', 'desc')->get();
+    
+        // Transform the posts data to include user_name and user_imageUrl
+        $postData = $posts->map(function ($post) {
+            $data = $post->toArray();
+            $data['user_name'] = $post->user->name; // Change 'name' to the actual column name in your users table
+            $data['user_imageUrl'] = $post->user->imageUrl; // Change 'imageUrl' to the actual column name in your users table
+            unset($data['user']); // Remove the user relationship to avoid redundancy
+            return $data;
+        });
+    
+        return $this->data(compact('postData'));
+    }
+
+
+
 }

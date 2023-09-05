@@ -100,6 +100,8 @@ Route::group(['prefix' => 'posts', 'middleware' => ['auth:sanctum'],'controller'
     Route::get('/show/{id}', 'showPost');
     Route::post('/edit/{id}', 'editPost');
     Route::post('/delete/{id}', 'deletePost');
+    Route::get('/user/{id}', 'getUserPosts');
+
 });
 
 // --------------------------------- Comment Controller ------------------------------------------
