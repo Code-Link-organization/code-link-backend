@@ -45,13 +45,13 @@ class User extends Authenticatable
     // User model
    public function responseFields(){
     return [
-        'id','name', 'email', 
+        'id','name', 'email','imageUrl', 
     ];
     }
 
     public function teams()
     {
-        return $this->belongsToMany(Team::class)->withTimestamps();
+        return $this->belongsToMany(Team::class, 'team_users')->withTimestamps();
     }
 
     public function teamRequests()

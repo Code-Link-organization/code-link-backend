@@ -106,12 +106,11 @@ Route::group(['prefix' => 'posts', 'middleware' => ['auth:sanctum'],'controller'
 
 // --------------------------------- Comment Controller ------------------------------------------
 
-Route::group(['prefix' => 'comments', 'middleware' => ['auth:sanctum'],'controller' => CommentController::class], function () {
+Route::group(['prefix' => 'posts/{post}/comments', 'middleware' => ['auth:sanctum'],'controller' => CommentController::class], function () {
+    Route::get('/', 'showAllComments');
     Route::post('/create', 'createComment');
-    Route::get('/getAll', 'showComments');
-    Route::get('/show/{id}', 'showComment');
-    Route::post('/edit/{id}', 'editComment');
-    Route::post('/delete/{id}', 'deleteComment');
+    Route::post('/edit/{comment}', 'editComment');
+    Route::get('/delete/{comment}', 'deleteComment');
 });
 
 // --------------------------------- Track Controller ------------------------------------------
