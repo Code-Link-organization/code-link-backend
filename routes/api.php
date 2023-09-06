@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\LikesController;
 
 
 /*
@@ -112,7 +113,12 @@ Route::group(['prefix' => 'posts/{post}/comments', 'middleware' => ['auth:sanctu
     Route::post('/edit/{comment}', 'editComment');
     Route::get('/delete/{comment}', 'deleteComment');
 });
+// --------------------------------- Likes Controller ------------------------------------------
 
+Route::group(['prefix' => 'posts/{post}', 'middleware' => ['auth:sanctum'],'controller' => LikesController::class], function () {
+    Route::get('/likes', 'getLikesForPost');
+    Route::post('/like', 'likePost');
+});
 // --------------------------------- Track Controller ------------------------------------------
 
 Route::group(['prefix' => 'tracks', 'middleware' => ['auth:sanctum'], 'controller' => TrackController::class], function () {
