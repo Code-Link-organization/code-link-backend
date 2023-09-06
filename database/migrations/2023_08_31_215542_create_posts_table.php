@@ -16,7 +16,10 @@ return new class extends Migration
             $table->text('content')->nullable();
             $table->string('image_path')->nullable();
             $table->unsignedInteger('comments_count')->default(0);
+            $table->unsignedInteger('likes_count')->default(0);
+            $table->unsignedInteger('shares_count')->default(0);
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('shareduser_id')->default(0);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
