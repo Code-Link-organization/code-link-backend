@@ -6,9 +6,11 @@ use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\SignupController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\Auth\EmailVerificationController;
+use App\Http\Controllers\Api\Home\PostController;
+use App\Http\Controllers\Api\Home\CommentController;
+use App\Http\Controllers\Api\Home\LikesController;
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TeamRequestController;
-use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\TrackController;
 use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\MentorController;
@@ -17,8 +19,7 @@ use App\Http\Controllers\Api\CommunityController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\DashboardController;
-use App\Http\Controllers\Api\CommentController;
-use App\Http\Controllers\Api\LikesController;
+
 
 
 /*
@@ -178,7 +179,7 @@ Route::group(['prefix' => 'communities', 'middleware' => ['auth:sanctum'], 'cont
 
 Route::group(['prefix' => 'users', 'middleware' => ['auth:sanctum'], 'controller' => UserController::class], function () {
     Route::get('/', 'index');
-    Route::get('/show/{id}', 'showUser');
+    Route::get('/show/{id}', 'getUserById');
     Route::post('/edit/{id}', 'editUser');
     Route::post('/delete/{id}', 'destroyUser');
 });
