@@ -34,12 +34,11 @@ class User extends Authenticatable
         'behanceUrl',
         'twitterUrl',
         'facebookUrl',
+        'imageUrl',
         'Address',
         'education',
         'date_of_birth',
-        'imageUrl',
         'code',
-
         'remember_token',
         'code_expired_at',
         'email_verified_at',

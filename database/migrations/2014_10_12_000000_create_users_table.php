@@ -32,9 +32,9 @@ return new class extends Migration
             $table->integer('years_of_experience')->nullable();
             $table->string('imageUrl')->nullable();
             $table->string('cvUrl')->nullable();
+            $table->string('behanceUrl')->nullable();
             $table->string('githubUrl')->nullable();
             $table->string('facebookUrl')->nullable();
-            $table->string('behanceUrl')->nullable();
             $table->string('twitterUrl')->nullable();
             $table->string('linkedinUrl')->nullable();
             $table->dateTime('date_of_birth')->nullable();

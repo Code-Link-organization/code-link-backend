@@ -11,13 +11,11 @@ class UserController extends Controller
 {
     public function index()
     {
-
     }
 
 
     public function createUser(Request $request)
     {
-
     }
 
 
@@ -26,7 +24,6 @@ class UserController extends Controller
 
     public function showUser($id)
     {
-
     }
 
 
@@ -147,20 +144,16 @@ class UserController extends Controller
             $user->imageUrl = "images/users/$imagePath";
         }
 
-         // No changes to update
-         return $this->errorMessage([], 'No changes to update', 422);
+
 
         // Save the updated user profile to the database if there are changes
         if ($changes) {
             $user->save();
-            return $this->successMessage('UserProfile updated successfully', 200,[]);
+            return $this->successMessage('UserProfile updated successfully', 200, []);
         }
 
-
-
-
-
-
+        // No changes to update
+        return $this->errorMessage([], 'No changes to update', 422);
     }
 
 
