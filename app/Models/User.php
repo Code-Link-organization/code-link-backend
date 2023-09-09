@@ -21,6 +21,27 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'email_profile',
+        'gender',
+        'track',
+        'role',
+        'bio',
+        'years_of_experience',
+        'phoneNumber',
+        'cvUrl',
+        'githubUrl',
+        'linkedinUrl',
+        'behanceUrl',
+        'twitterUrl',
+        'facebookUrl',
+        'Address',
+        'education',
+        'date_of_birth',
+        'imageUrl',
+        'code',
+        'code_expired_at',
+        'email_verified_at',
+        'remember_token'
     ];
 
     /**
@@ -45,7 +66,7 @@ class User extends Authenticatable
     // User model
    public function responseFields(){
     return [
-        'id','name', 'email','imageUrl', 
+        'id','name', 'email','imageUrl',
     ];
     }
 
@@ -98,7 +119,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Community::class, 'community_users');
     }
-    
+
     public function courses()
     {
         return $this->hasMany(Course::class);
