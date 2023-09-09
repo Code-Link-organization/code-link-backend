@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Home;
 
 use App\Http\Controllers\Controller;
 use App\Models\Like;
@@ -25,7 +25,7 @@ class LikesController extends Controller
             // Update the likes_count in the posts table
             $post->decrement('likes_count');
     
-            return $this->successMessage('Post unliked successfully', 200);
+            return $this->data(['post_id' => $post->id],'Post unliked successfully', 200);
         }
     
         // Create a new like record for the authenticated user and the post
@@ -37,25 +37,23 @@ class LikesController extends Controller
         // Update the likes_count in the posts table
         $post->increment('likes_count');
     
-        return $this->successMessage('Post liked successfully', 200);
+        return $this->data(['post_id' => $post->id],'Post liked successfully', 200);
     }
 
     public function getLikesForPost(Post $post)
-{
-    // Get all likes for the post
-    $likes = Like::where('post_id', $post->id)->get();
+    {
+        // Get all likes for the post
+        $likes = Like::where('post_id', $post->id)->get();
 
-    // Transform the likes data to include user_name and user_imageUrl
-    $likeData = $likes->map(function ($like) {
-        $data = $like->toArray();
-        $data['user_name'] = $like->user->name; // Change 'name' to the actual column name in your users table
-        $data['user_imageUrl'] = $like->user->imageUrl; // Change 'imageUrl' to the actual column name in your users table
-        unset($data['user']); // Remove the user relationship to avoid redundancy
-        return $data;
-    });
+        // Transform the likes data to include user_name and user_imageUrl
+        $likeData = $likes->map(function ($like) {
+            $data = $like->toArray();
+            $data['user_name'] = $like->user->name; 
+            $data['user_imageUrl'] = $like->user->imageUrl; 
+            unset($data['user']); 
+            return $data;
+        });
 
-    return $this->data(compact('likeData'));
-}
-
-    
+        return $this->data(compact('likeData'));
+    }
 }

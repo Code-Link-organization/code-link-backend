@@ -33,10 +33,10 @@ return new class extends Migration
             $table->string('imageUrl')->nullable();
             $table->string('cvUrl')->nullable();
             $table->string('githubUrl')->nullable();
-            $table->string('linkedinUrl')->nullable();
+            $table->string('facebookUrl')->nullable();
             $table->string('behanceUrl')->nullable();
             $table->string('twitterUrl')->nullable();
-            $table->string('facebookUrl')->nullable();
+            $table->string('linkedinUrl')->nullable();
             $table->dateTime('date_of_birth')->nullable();
             $table->string('Address')->nullable();
             $table->enum('education', ['preparatory', 'secondary','university','graduated','other'])->nullable();

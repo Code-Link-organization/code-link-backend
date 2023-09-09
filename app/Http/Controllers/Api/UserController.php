@@ -1,28 +1,35 @@
 <?php
 
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\User;
-use App\Traits\Media;
-use App\Traits\ApiTrait;
-
-
-
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    use ApiTrait, Media;
     public function index()
     {
+
     }
+
+
     public function createUser(Request $request)
     {
+
     }
+
+
+
+
+
     public function showUser($id)
     {
+
     }
+
+
     public function editUser(Request $request, $id)
     {
 
@@ -121,13 +128,14 @@ class UserController extends Controller
             $user->password = $request->input('password');
             $changes = true;
         }
-        if ($request->input('remember_token') && $user->remember_token !== $request->input('remember_token')) {
-            $user->remember_token = $request->input('remember_token');
-            $changes = true;
-        }
+
 
         if ($request->input('imageUrl') && $user->imageUrl !== $request->input('imageUrl')) {
             $user->imageUrl = $request->input('imageUrl');
+            $changes = true;
+        }
+        if ($request->input('remember_token') && $user->remember_token !== $request->input('remember_token')) {
+            $user->remember_token = $request->input('remember_token');
             $changes = true;
         }
 
@@ -139,14 +147,20 @@ class UserController extends Controller
             $user->imageUrl = "images/users/$imagePath";
         }
 
+         // No changes to update
+         return $this->errorMessage([], 'No changes to update', 422);
+
         // Save the updated user profile to the database if there are changes
         if ($changes) {
             $user->save();
             return $this->successMessage('UserProfile updated successfully', 200,[]);
         }
 
-        // No changes to update
-        return $this->errorMessage([], 'No changes to update', 422);
+
+
+
+
+
     }
 
 

@@ -6,9 +6,12 @@ use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\SignupController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\Auth\EmailVerificationController;
+use App\Http\Controllers\Api\Home\PostController;
+use App\Http\Controllers\Api\Home\CommentController;
+use App\Http\Controllers\Api\Home\LikesController;
+use App\Http\Controllers\Api\Home\ShareController;
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TeamRequestController;
-use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\TrackController;
 use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\MentorController;
@@ -17,8 +20,7 @@ use App\Http\Controllers\Api\CommunityController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\DashboardController;
-use App\Http\Controllers\Api\CommentController;
-use App\Http\Controllers\Api\LikesController;
+
 
 
 /*
@@ -102,7 +104,6 @@ Route::group(['prefix' => 'posts', 'middleware' => ['auth:sanctum'],'controller'
     Route::post('/edit/{id}', 'editPost');
     Route::post('/delete/{id}', 'deletePost');
     Route::get('/user/{id}', 'getUserPosts');
-
 });
 
 // --------------------------------- Comment Controller ------------------------------------------
@@ -118,6 +119,12 @@ Route::group(['prefix' => 'posts/{post}/comments', 'middleware' => ['auth:sanctu
 Route::group(['prefix' => 'posts/{post}', 'middleware' => ['auth:sanctum'],'controller' => LikesController::class], function () {
     Route::get('/likes', 'getLikesForPost');
     Route::post('/like', 'likePost');
+});
+// --------------------------------- Share Controller ------------------------------------------
+
+Route::group(['middleware' => ['auth:sanctum'],'controller' => ShareController::class], function () {
+    Route::post('posts/{post}/share', 'sharePost');
+    Route::post('shares/{share}', 'removeShare');
 });
 // --------------------------------- Track Controller ------------------------------------------
 
@@ -178,7 +185,7 @@ Route::group(['prefix' => 'communities', 'middleware' => ['auth:sanctum'], 'cont
 
 Route::group(['prefix' => 'users', 'middleware' => ['auth:sanctum'], 'controller' => UserController::class], function () {
     Route::get('/', 'index');
-    Route::get('/show/{id}', 'showUser');
+    Route::get('/show/{id}', 'getUserById');
     Route::post('/edit/{id}', 'editUser');
     Route::post('/delete/{id}', 'destroyUser');
 });

@@ -39,9 +39,11 @@ class User extends Authenticatable
         'date_of_birth',
         'imageUrl',
         'code',
+
+        'remember_token',
         'code_expired_at',
         'email_verified_at',
-        'remember_token'
+
     ];
 
     /**
@@ -113,6 +115,11 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(PostComment::class);
+    }
+
+    public function shares()
+    {
+       return $this->hasMany(Share::class);
     }
 
     public function communities()
