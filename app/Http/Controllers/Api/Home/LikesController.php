@@ -25,7 +25,7 @@ class LikesController extends Controller
             // Update the likes_count in the posts table
             $post->decrement('likes_count');
     
-            return $this->successMessage('Post unliked successfully', 200);
+            return $this->data(['post_id' => $post->id],'Post unliked successfully', 200);
         }
     
         // Create a new like record for the authenticated user and the post
@@ -37,7 +37,7 @@ class LikesController extends Controller
         // Update the likes_count in the posts table
         $post->increment('likes_count');
     
-        return $this->successMessage('Post liked successfully', 200);
+        return $this->data(['post_id' => $post->id],'Post liked successfully', 200);
     }
 
     public function getLikesForPost(Post $post)

@@ -121,7 +121,7 @@ class CommentController extends Controller
             // Delete the comment
             $comment->delete();
 
-            return $this->successMessage('Comment deleted successfully', 200);
+            return $this->data(['post_id' => $post->id],'Comment deleted successfully', 200);
         } catch (\Exception $e) {
             return $this->errorMessage([], 'An error occurred while deleting the comment', 500);
         }

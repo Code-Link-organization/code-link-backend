@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Auth\EmailVerificationController;
 use App\Http\Controllers\Api\Home\PostController;
 use App\Http\Controllers\Api\Home\CommentController;
 use App\Http\Controllers\Api\Home\LikesController;
+use App\Http\Controllers\Api\Home\ShareController;
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TeamRequestController;
 use App\Http\Controllers\Api\TrackController;
@@ -103,7 +104,6 @@ Route::group(['prefix' => 'posts', 'middleware' => ['auth:sanctum'],'controller'
     Route::post('/edit/{id}', 'editPost');
     Route::post('/delete/{id}', 'deletePost');
     Route::get('/user/{id}', 'getUserPosts');
-
 });
 
 // --------------------------------- Comment Controller ------------------------------------------
@@ -119,6 +119,12 @@ Route::group(['prefix' => 'posts/{post}/comments', 'middleware' => ['auth:sanctu
 Route::group(['prefix' => 'posts/{post}', 'middleware' => ['auth:sanctum'],'controller' => LikesController::class], function () {
     Route::get('/likes', 'getLikesForPost');
     Route::post('/like', 'likePost');
+});
+// --------------------------------- Share Controller ------------------------------------------
+
+Route::group(['middleware' => ['auth:sanctum'],'controller' => ShareController::class], function () {
+    Route::post('posts/{post}/share', 'sharePost');
+    Route::post('shares/{share}', 'removeShare');
 });
 // --------------------------------- Track Controller ------------------------------------------
 
