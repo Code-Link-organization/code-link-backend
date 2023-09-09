@@ -18,15 +18,14 @@ class PostController extends Controller
 
     public function getPosts()
     {
-        // Retrieve all posts with the user relationship and order them by 'created_at' in descending order
         $posts = Post::with('user')->orderBy('created_at', 'desc')->get();
     
         // Transform the posts data to include user_name and user_imageUrl
         $postData = $posts->map(function ($post) {
             $data = $post->toArray();
-            $data['user_name'] = $post->user->name; // Change 'name' to the actual column name in your users table
-            $data['user_imageUrl'] = $post->user->imageUrl; // Change 'imageUrl' to the actual column name in your users table
-            unset($data['user']); // Remove the user relationship to avoid redundancy
+            $data['user_name'] = $post->user->name;
+            $data['user_imageUrl'] = $post->user->imageUrl; 
+            unset($data['user']); 
             return $data;
         });
     
@@ -42,14 +41,12 @@ class PostController extends Controller
            return $this->errorMessage([], 'Post not found', 404);
        }
    
-       // Convert the Post model and user model to an array
        $postData = $post->toArray();
    
        // Replace the user_id with user's name and imageUrl
-       $postData['user_name'] = $post->user->name; // Change 'name' to the actual column name in your users table
-       $postData['user_imageUrl'] = $post->user->imageUrl; // Change 'imageUrl' to the actual column name in your users table
+       $postData['user_name'] = $post->user->name; 
+       $postData['user_imageUrl'] = $post->user->imageUrl; 
    
-       // Unset the user relationship to avoid redundancy
        unset($postData['user']);
    
        return $this->data(['post' => $postData], 'Post retrieved successfully', 200);
@@ -58,7 +55,6 @@ class PostController extends Controller
 
    public function createPost(PostRequest $request)
    {        
-       // Check if either 'content' or 'file_path' is provided
        if (!$request->filled('content') && !$request->hasFile('file_path')) {
            return $this->errorMessage([], 'Either content or an image must be provided', 422);
        }
@@ -81,71 +77,69 @@ class PostController extends Controller
    
        $post->save();
    
-       // Fetch the post again to include user_name, user_imageUrl, and other data
        $post = Post::with('user')->find($post->id);
        
        $postData = $post->toArray();
        // Replace the user_id with user's name and imageUrl
-       $postData['user_name'] = $post->user->name; // Change 'name' to the actual column name in your users table
-       $postData['user_imageUrl'] = $post->user->imageUrl; // Change 'imageUrl' to the actual column name in your users table
-       unset($postData['user']); // Remove the user relationship to avoid redundancy
+       $postData['user_name'] = $post->user->name;
+       $postData['user_imageUrl'] = $post->user->imageUrl;
+       unset($postData['user']); 
    
        return $this->data(['post' => $postData], 'Post created successfully', 201);
    }
+ 
    
    public function editPost(PostRequest $request, $id)
    {
        $post = Post::find($id);
+
        if (!$post) {
            return $this->errorMessage([], 'Post not found', 404);
        }
-   
+
        if ($post->user_id !== Auth::id()) {
            return $this->errorMessage([], 'You are not authorized to edit this post', 403);
        }
-   
+
        // Check if there are any changes to update
-       if (!$request->filled('content') && !$request->hasFile('file_path')) {
+       if (!$request->filled('content') && !$request->hasFile('file_path') && !$request->filled('remove_image')) {
            return $this->errorMessage([], 'No changes to update', 422);
        }
-   
+
        // Update the post content if provided
        if ($request->filled('content')) {
            $post->content = $request->input('content');
        }
-   
-       // Handle image upload, if provided
+
+       // Handle image upload or removal, if provided
        if ($request->hasFile('file_path')) {
            $image = $request->file('file_path');
            $imagePath = $this->upload($image, 'posts');
-           $post->image_path = "images/posts/$imagePath"; 
-       } elseif (empty($request->input('file_path'))) {
-           // No new image provided, check if 'file_path' input is empty
-           // If it's empty, delete the existing image
+           $post->image_path = "images/posts/$imagePath";
+       } elseif ($request->filled('remove_image')) {
+           // Check if the 'remove_image' input is provided and set to true
+           // If 'remove_image' is true, delete the existing image and set image_path to null
            $this->delete($post->image_path);
-           $post->image_path = null; // Set image_path to null in the database
+           $post->image_path = null;
        }
-   
+
        $post->save();
-   
-       // Fetch the post again to include user_name, user_imageUrl, and other data
+
        $post = Post::with('user')->find($post->id);
-   
        $postData = $post->toArray();
+
        // Replace the user_id with user's name and imageUrl
-       $postData['user_name'] = $post->user->name; // Change 'name' to the actual column name in your users table
-       $postData['user_imageUrl'] = $post->user->imageUrl; // Change 'imageUrl' to the actual column name in your users table
-       unset($postData['user']); // Remove the user relationship to avoid redundancy
-   
-       if ($request->filled('content') || $request->hasFile('file_path')) {
+       $postData['user_name'] = $post->user->name; 
+       $postData['user_imageUrl'] = $post->user->imageUrl; 
+       unset($postData['user']); 
+
+       if ($request->filled('content') || $request->hasFile('file_path') || $request->filled('remove_image')) {
            return $this->data(['post' => $postData], 'Post updated successfully', 200);
        } else {
            return $this->errorMessage([], 'No changes to update', 422);
        }
    }
    
-   
-
   
     public function deletePost($id)
     {
@@ -167,9 +161,9 @@ class PostController extends Controller
         return $this->successMessage('Post deleted successfully', 200);
     }
 
+    
     public function getUserPosts($userId)
     {
-        // Find the user by their ID
         $user = User::find($userId);
     
         if (!$user) {
@@ -182,15 +176,14 @@ class PostController extends Controller
         // Transform the posts data to include user_name and user_imageUrl
         $postData = $posts->map(function ($post) {
             $data = $post->toArray();
-            $data['user_name'] = $post->user->name; // Change 'name' to the actual column name in your users table
-            $data['user_imageUrl'] = $post->user->imageUrl; // Change 'imageUrl' to the actual column name in your users table
-            unset($data['user']); // Remove the user relationship to avoid redundancy
+            $data['user_name'] = $post->user->name; 
+            $data['user_imageUrl'] = $post->user->imageUrl; 
+            unset($data['user']); 
             return $data;
         });
     
         return $this->data(compact('postData'));
     }
-
 
 
 }
