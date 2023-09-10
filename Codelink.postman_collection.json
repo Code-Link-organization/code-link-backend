@@ -31,12 +31,12 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "eman",
+									"value": "salah",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "emanelhelaly11@gmail.com",
+									"value": "salah@gmail.com",
 									"type": "text"
 								},
 								{
@@ -88,7 +88,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "emanelhelaly11@gmail.com",
+									"value": "salah@gmail.com",
 									"type": "text"
 								},
 								{
@@ -1753,7 +1753,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "4|6yeIAPv9TDs7cYlkXlLsa6GfzpiXXFwHxgEtWtZN",
+									"value": "1|khAolrPv8LpJ6yhpY3zwfXOrhOxpdqV07An5Tvu1",
 									"type": "string"
 								}
 							]
@@ -1773,18 +1773,7 @@
 						],
 						"body": {
 							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "email",
-									"value": "salah@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "123123",
-									"type": "text"
-								}
-							]
+							"formdata": []
 						},
 						"url": {
 							"raw": "http://localhost:8000/api/users/show/1",
@@ -1797,6 +1786,156 @@
 								"api",
 								"users",
 								"show",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users/updateProfile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|khAolrPv8LpJ6yhpY3zwfXOrhOxpdqV07An5Tvu1",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "salaaa",
+									"type": "text"
+								},
+								{
+									"key": "imageUrl",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "track",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "bio",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "email_profile",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "cvUrl",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "githubUrl",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "linkedinUrl",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "behanceUrl",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "twitterUrl",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "facebookUrl",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/users/updateProfile/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"updateProfile",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users/deleteAccount",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|khAolrPv8LpJ6yhpY3zwfXOrhOxpdqV07An5Tvu1",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/users/deleteAccount/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"deleteAccount",
 								"1"
 							]
 						}

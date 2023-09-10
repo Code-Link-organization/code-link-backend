@@ -126,6 +126,15 @@ Route::group(['middleware' => ['auth:sanctum'],'controller' => ShareController::
     Route::post('posts/{post}/share', 'sharePost');
     Route::post('shares/{share}', 'removeShare');
 });
+
+// --------------------------------- User Controller -------------------------------------------
+
+Route::group(['prefix' => 'users', 'middleware' => ['auth:sanctum'], 'controller' => UserController::class], function () {
+    Route::get('/', 'index');
+    Route::get('/show/{id}', 'getUserById');
+    Route::post('/updateProfile/{id}', 'updateProfile');
+    Route::post('/deleteAccount/{id}', 'destroyAccount');
+});
 // --------------------------------- Track Controller ------------------------------------------
 
 Route::group(['prefix' => 'tracks', 'middleware' => ['auth:sanctum'], 'controller' => TrackController::class], function () {
@@ -181,14 +190,6 @@ Route::group(['prefix' => 'communities', 'middleware' => ['auth:sanctum'], 'cont
     Route::post('/delete/{id}', 'destroyCommunity');
 });
 
-// --------------------------------- User Controller -------------------------------------------
-
-Route::group(['prefix' => 'users', 'middleware' => ['auth:sanctum'], 'controller' => UserController::class], function () {
-    Route::get('/', 'index');
-    Route::get('/show/{id}', 'getUserById');
-    Route::post('/edit/{id}', 'editUser');
-    Route::post('/delete/{id}', 'destroyUser');
-});
 // --------------------------------- Notifcation Controller -------------------------------------
 
 Route::group(['prefix' => 'notifications', 'middleware' => ['auth:sanctum'], 'controller' => NotifcationController::class], function () {

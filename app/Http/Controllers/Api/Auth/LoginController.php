@@ -50,7 +50,7 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         $user = Auth::guard('sanctum')->user();
-        // $user->currentAccessToken()->delete();
+        $user->currentAccessToken()->delete();
         return ApiTrait::successMessage(__('Logout successful.'));
     }
 }

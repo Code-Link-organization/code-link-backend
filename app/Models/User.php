@@ -22,27 +22,15 @@ class User extends Authenticatable
         'email',
         'password',
         'email_profile',
-        'gender',
         'track',
-        'role',
         'bio',
-        'years_of_experience',
-        'phoneNumber',
         'cvUrl',
         'githubUrl',
         'linkedinUrl',
         'behanceUrl',
         'twitterUrl',
         'facebookUrl',
-        'imageUrl',
-        'Address',
-        'education',
-        'date_of_birth',
-        'code',
-        'remember_token',
-        'code_expired_at',
-        'email_verified_at',
-
+        'imageUrl'
     ];
 
     /**
@@ -67,7 +55,7 @@ class User extends Authenticatable
     // User model
    public function responseFields(){
     return [
-        'id','name', 'email','imageUrl',
+        'id','name', 'email','imageUrl','track',
     ];
     }
 

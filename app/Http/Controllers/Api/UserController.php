@@ -4,69 +4,68 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserProfileRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Traits\ApiTrait;
+use App\Traits\Media;
 
 class UserController extends Controller
 {
-    public function index()
-    {
+    use ApiTrait, Media; 
+    
+    public function index(){
+
     }
 
 
-    public function createUser(Request $request)
-    {
-    }
-
-
-
-
-
-    public function showUser($id)
-    {
-    }
-
-
-    public function editUser(Request $request, $id)
+    public function getUserById($id)
     {
 
-        // Retrieve the user with the given ID from the database
+        // Find the user by their ID
         $user = User::find($id);
 
-
-        // check if the user profile exists in the database
         if (!$user) {
-            return $this->errorMessage([], 'Uesr not found', 404);
+            return $this->errorMessage([], 'User not found', 404);
         }
 
-        // Check if there are any changes to update
+        // You can customize the data you want to return here
+        $userData = [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'imageUrl' => $user->imageUrl,
+            'track' => $user->track
+        ];
+
+        return $this->data(['user' => $userData], 'User retrieved successfully', 200);
+    }
+
+    public function updateProfile(UpdateUserProfileRequest $request, $id)
+    {
+        $user = User::find($id);
+    
         $changes = false;
+        
+        if (!$user) {
+            return $this->errorMessage([], 'User not found', 404);
+        }
+
         if ($request->input('name') && $user->name !== $request->input('name')) {
             $user->name = $request->input('name');
+            $changes = true;
+        }
+        if ($request->input('track') && $user->track !== $request->input('track')) {
+            $user->track = $request->input('track');
             $changes = true;
         }
         if ($request->input('bio') && $user->bio !== $request->input('bio')) {
             $user->bio = $request->input('bio');
             $changes = true;
         }
-        if ($request->input('email_profile') && $user->email !== $request->input('email')) {
-            $user->email = $request->input('email');
-            $changes = true;
-        }
-        if ($request->input('gender') && $user->gender !== $request->input('gender')) {
-            $user->gender = $request->input('gender');
-            $changes = true;
-        }
-        if ($request->input('phoneNumber') && $user->phoneNumber !== $request->input('phoneNumber')) {
-            $user->phoneNumber = $request->input('phoneNumber');
-            $changes = true;
-        }
-        if ($request->input('years_of_experience') && $user->years_of_experience !== $request->input('years_of_experience')) {
-            $user->years_of_experience = $request->input('years_of_experience');
-            $changes = true;
-        }
-        if ($request->input('track') && $user->track !== $request->input('track')) {
-            $user->track = $request->input('track');
+        if ($request->input('email_profile') && $user->email_profile !== $request->input('email_profile')) {
+            $user->email_profile = $request->input('email_profile');
             $changes = true;
         }
         if ($request->input('cvUrl') && $user->cvUrl !== $request->input('cvUrl')) {
@@ -93,74 +92,52 @@ class UserController extends Controller
             $user->facebookUrl = $request->input('facebookUrl');
             $changes = true;
         }
-        if ($request->input('Address') && $user->Address !== $request->input('Address')) {
-            $user->Address = $request->input('Address');
-            $changes = true;
-        }
-        if ($request->input('date_of_birth') && $user->date_of_birth !== $request->input('date_of_birth')) {
-            $user->date_of_birth = $request->input('date_of_birth');
-            $changes = true;
-        }
-        if ($request->input('education') && $user->education !== $request->input('education')) {
-            $user->education = $request->input('education');
-            $changes = true;
-        }
-        if ($request->input('role') && $user->role !== $request->input('role')) {
-            $user->role = $request->input('role');
-            $changes = true;
-        }
-        if ($request->input('code') && $user->code !== $request->input('code')) {
-            $user->code = $request->input('code');
-            $changes = true;
-        }
-        if ($request->input('code_expired_at') && $user->code_expired_at !== $request->input('code_expired_at')) {
-            $user->code_expired_at = $request->input('code_expired_at');
-            $changes = true;
-        }
-        if ($request->input('email_verified_at') && $user->email_verified_at !== $request->input('email_verified_at')) {
-            $user->email_verified_at = $request->input('email_verified_at');
-            $changes = true;
-        }
-        if ($request->input('password') && $user->password !== $request->input('password')) {
-            $user->password = $request->input('password');
-            $changes = true;
-        }
-
-
-        if ($request->input('imageUrl') && $user->imageUrl !== $request->input('imageUrl')) {
-            $user->imageUrl = $request->input('imageUrl');
-            $changes = true;
-        }
-        if ($request->input('remember_token') && $user->remember_token !== $request->input('remember_token')) {
-            $user->remember_token = $request->input('remember_token');
-            $changes = true;
-        }
-
-
-        // Handle image upload, if provided
-        if ($request->hasFile('file_path')) {
-            $image = $request->file('file_path');
+      
+        if ($request->hasFile('imageUrl')) {
+            $image = $request->file('imageUrl');
             $imagePath = $this->upload($image, 'users');
             $user->imageUrl = "images/users/$imagePath";
+            $userData['imageUrl'] = $user->imageUrl; 
+            $changes = true;
         }
-
-
-
-        // Save the updated user profile to the database if there are changes
+    
         if ($changes) {
             $user->save();
-            return $this->successMessage('UserProfile updated successfully', 200, []);
+            
+            $userData = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'imageUrl' => $user->imageUrl,
+                'track' => $user->track,
+                'bio' => $user->bio,
+                'cvUrl' => $user->cvUrl,
+                'email_profile' => $user->email_profile,
+                'githubUrl' => $user->githubUrl,
+                'linkedinUrl' => $user->linkedinUrl,
+                'behanceUrl' => $user->behanceUrl,
+                'facebookUrl' => $user->facebookUrl,
+                'twitterUrl' => $user->twitterUrl,
+            ];
+        
+            return $this->data(['user' => $userData], 'Profile updated successfully', 200);
         }
-
-        // No changes to update
+        
         return $this->errorMessage([], 'No changes to update', 422);
     }
 
 
-
-
-
-    public function destroyUser($id)
+    public function destroyAccount($id)
     {
+        $user = User::find($id);
+    
+        if (!$user) {
+            return $this->errorMessage([], 'User not found', 404);
+        }
+    
+        $user->delete();
+    
+        return $this->successMessage('User account deleted successfully', 200);
     }
+    
 }
