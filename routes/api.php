@@ -75,6 +75,8 @@ Route::group(['prefix' => 'teams', 'middleware' => ['auth:sanctum'], 'controller
     Route::post('/delete/{id}', 'destroyTeam');
     Route::post('/leave/{teamId}', 'leaveTeam');
     Route::post('/remove-member/{teamId}/{userId}', 'removeMember'); //Leader only can remove member
+    Route::get('/user-teams', 'showUserTeams');
+    Route::get('/leader-teams', 'showLeaderTeams');
 });
 
 // --------------------------------- TeamRequest Controller -----------------------------------

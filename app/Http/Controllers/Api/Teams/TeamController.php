@@ -265,4 +265,54 @@ public function updateTeam(Request $request, $id)
         return $this->data(['team_id' => $team->id],'Member removed from the team.', 200);
     }
 
+//------------------------------------------------------------
+public function showUserTeams()
+{
+    $user = Auth::user();
+
+    try {
+        // Fetch teams that the user is a member of
+        $userTeams = $user->teams()->orderBy('created_at', 'desc')->get();
+
+        return response()->json([
+            'result' => true,
+            'message' => '',
+            'data' => [
+                'teams' => $userTeams,
+            ],
+        ], 200);
+    } catch (\Exception $e) {
+        return response()->json([
+            'result' => false,
+            'message' => 'User teams not found.',
+            'data' => [],
+        ], 404);
+    }
+}
+
+public function showLeaderTeams()
+{
+    $user = Auth::user();
+
+    try {
+        // Fetch teams that the user is a leader of
+        $leaderTeams = $user->ledTeams()->orderBy('created_at', 'desc')->get();
+
+        return response()->json([
+            'result' => true,
+            'message' => '',
+            'data' => [
+                'teams' => $leaderTeams,
+            ],
+        ], 200);
+    } catch (\Exception $e) {
+        return response()->json([
+            'result' => false,
+            'message' => 'Leader teams not found.',
+            'data' => [],
+        ], 404);
+    }
+}
+
+
 }

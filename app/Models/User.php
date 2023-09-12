@@ -72,6 +72,11 @@ class User extends Authenticatable
         return $this->hasOne(UserProfile::class);
     }
 
+    public function ledTeams()
+   {
+    return $this->hasMany(Team::class, 'leader_id');
+   }
+
     public function followers()
     {
         return $this->belongsToMany(User::class, 'user_followers', 'user_id', 'follower_id');
