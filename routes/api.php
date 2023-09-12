@@ -10,6 +10,8 @@ use App\Http\Controllers\Api\Home\PostController;
 use App\Http\Controllers\Api\Home\CommentController;
 use App\Http\Controllers\Api\Home\LikesController;
 use App\Http\Controllers\Api\Home\ShareController;
+use App\Http\Controllers\Api\Users\ProfileController;
+use App\Http\Controllers\Api\Users\UserController;
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TeamRequestController;
 use App\Http\Controllers\Api\TrackController;
@@ -17,7 +19,6 @@ use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\MentorController;
 use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\CommunityController;
-use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\DashboardController;
 
@@ -127,13 +128,19 @@ Route::group(['middleware' => ['auth:sanctum'],'controller' => ShareController::
     Route::post('shares/{share}', 'removeShare');
 });
 
+// --------------------------------- Profile Controller -------------------------------------------
+
+Route::group(['prefix' => 'profile', 'middleware' => ['auth:sanctum'], 'controller' => ProfileController::class], function () {
+    Route::post('/edit-profile/{id}', 'updateProfile');
+    Route::post('/edit-info/{id}', 'updatePersonalInfo');
+    Route::post('/delete-account/{id}', 'destroyAccount');
+});
+
 // --------------------------------- User Controller -------------------------------------------
 
 Route::group(['prefix' => 'users', 'middleware' => ['auth:sanctum'], 'controller' => UserController::class], function () {
     Route::get('/', 'index');
     Route::get('/show/{id}', 'getUserById');
-    Route::post('/updateProfile/{id}', 'updateProfile');
-    Route::post('/deleteAccount/{id}', 'destroyAccount');
 });
 // --------------------------------- Track Controller ------------------------------------------
 

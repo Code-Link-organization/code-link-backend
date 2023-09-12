@@ -21,15 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'email_profile',
         'track',
         'bio',
-        'cvUrl',
-        'githubUrl',
-        'linkedinUrl',
-        'behanceUrl',
-        'twitterUrl',
-        'facebookUrl',
         'imageUrl'
     ];
 

@@ -17,17 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique()->nullable();
-            $table->enum('role', ['admin', 'sub-admin', 'reviewer', 'user'])->default('user');
             $table->string('imageUrl')->nullable();
             $table->string('track')->nullable();
             $table->text('bio')->nullable();
-            $table->string('email_profile')->unique()->nullable();
-            $table->string('cvUrl')->nullable();
-            $table->string('githubUrl')->nullable();
-            $table->string('linkedinUrl')->nullable();
-            $table->string('behanceUrl')->nullable();
-            $table->string('facebookUrl')->nullable();
-            $table->string('twitterUrl')->nullable();
+            $table->enum('role', ['admin', 'sub-admin', 'reviewer', 'user'])->default('user');
             $table->integer('code')->nullable();
             $table->timestamp('code_expired_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();

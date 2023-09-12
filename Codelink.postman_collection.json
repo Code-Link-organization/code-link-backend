@@ -979,6 +979,299 @@
 			]
 		},
 		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "edit-profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|kAQ7DRFaEdugleNFltpBRYFfdWcqB6d6PK8YRlSJ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "salah Elhelaly",
+									"type": "text"
+								},
+								{
+									"key": "imageUrl",
+									"type": "file",
+									"src": "/E:/Photos/photo_2022-03-23_16-46-19.jpg"
+								},
+								{
+									"key": "track",
+									"value": "track",
+									"type": "text"
+								},
+								{
+									"key": "bio",
+									"value": "bio",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/profile/edit-profile/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"profile",
+								"edit-profile",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit-info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|kAQ7DRFaEdugleNFltpBRYFfdWcqB6d6PK8YRlSJ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "governate",
+									"value": "Dakahlia",
+									"type": "text"
+								},
+								{
+									"key": "university",
+									"value": "Mans",
+									"type": "text"
+								},
+								{
+									"key": "faculty",
+									"value": "FCIS",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "2018-12-25",
+									"type": "text"
+								},
+								{
+									"key": "emailProfile",
+									"value": "salaa@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "201255",
+									"type": "text"
+								},
+								{
+									"key": "projects",
+									"value": "project",
+									"type": "text"
+								},
+								{
+									"key": "progLanguages",
+									"value": "c - c++ - php",
+									"type": "text"
+								},
+								{
+									"key": "cvUrl",
+									"value": "https:",
+									"type": "text"
+								},
+								{
+									"key": "githubUrl",
+									"value": "https:",
+									"type": "text"
+								},
+								{
+									"key": "linkedinUrl",
+									"value": "https:",
+									"type": "text"
+								},
+								{
+									"key": "behanceUrl",
+									"value": "https:",
+									"type": "text"
+								},
+								{
+									"key": "twitterUrl",
+									"value": "https:",
+									"type": "text"
+								},
+								{
+									"key": "facebookUrl",
+									"value": "https:",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/profile/edit-info/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"profile",
+								"edit-info",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|DBEWONzyoS5HpU9xw14FhYeNHxCwElJvWDbqb3wZ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/profile/delete-account/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"profile",
+								"delete-account",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "users/getUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|kAQ7DRFaEdugleNFltpBRYFfdWcqB6d6PK8YRlSJ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/users/show/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"show",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Teams",
 			"item": [
 				{
@@ -1732,211 +2025,6 @@
 								"team-requests",
 								"accept-invite",
 								"5"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Profile",
-			"item": [
-				{
-					"name": "users/getUser",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "1|khAolrPv8LpJ6yhpY3zwfXOrhOxpdqV07An5Tvu1",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": []
-						},
-						"url": {
-							"raw": "http://localhost:8000/api/users/show/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"users",
-								"show",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "users/updateProfile",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "1|khAolrPv8LpJ6yhpY3zwfXOrhOxpdqV07An5Tvu1",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "salaaa",
-									"type": "text"
-								},
-								{
-									"key": "imageUrl",
-									"type": "file",
-									"src": []
-								},
-								{
-									"key": "track",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "bio",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "email_profile",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "cvUrl",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "githubUrl",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "linkedinUrl",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "behanceUrl",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "twitterUrl",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "facebookUrl",
-									"value": "",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:8000/api/users/updateProfile/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"users",
-								"updateProfile",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "users/deleteAccount",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "1|khAolrPv8LpJ6yhpY3zwfXOrhOxpdqV07An5Tvu1",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": []
-						},
-						"url": {
-							"raw": "http://localhost:8000/api/users/deleteAccount/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"users",
-								"deleteAccount",
-								"1"
 							]
 						}
 					},
