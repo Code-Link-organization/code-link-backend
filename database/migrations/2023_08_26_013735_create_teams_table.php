@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->string('imageUrl')->nullable();
             $table->unsignedBigInteger('leader_id');
             $table->foreign('leader_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('members_count')->default(0);

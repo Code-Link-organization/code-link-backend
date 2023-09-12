@@ -31,12 +31,12 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "salah",
+									"value": "eman",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "salah@gmail.com",
+									"value": "eman@gmail.com",
 									"type": "text"
 								},
 								{
@@ -88,7 +88,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "salah@gmail.com",
+									"value": "eman@gmail.com",
 									"type": "text"
 								},
 								{
@@ -989,7 +989,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|kAQ7DRFaEdugleNFltpBRYFfdWcqB6d6PK8YRlSJ",
+									"value": "1|pf6c21U5kumgTySiLtn0xCSkiYuX4R5eUZ1XPeXV",
 									"type": "string"
 								}
 							]
@@ -1282,7 +1282,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|DZu0Q0HEtqM18Sn1Xt7GYJPoNsKg50WPNQkUF0vb",
+									"value": "1|pf6c21U5kumgTySiLtn0xCSkiYuX4R5eUZ1XPeXV",
 									"type": "string"
 								}
 							]
@@ -1324,7 +1324,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|dWgrMHGnLnqhnptvnMR8v4gaCC2Ura5jk9KCvhOQ",
+									"value": "1|pf6c21U5kumgTySiLtn0xCSkiYuX4R5eUZ1XPeXV",
 									"type": "string"
 								}
 							]
@@ -1338,7 +1338,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/api/teams/show/7",
+							"raw": "http://localhost:8000/api/teams/show/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1348,7 +1348,7 @@
 								"api",
 								"teams",
 								"show",
-								"7"
+								"1"
 							]
 						}
 					},
@@ -1362,7 +1362,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|DZu0Q0HEtqM18Sn1Xt7GYJPoNsKg50WPNQkUF0vb",
+									"value": "1|pf6c21U5kumgTySiLtn0xCSkiYuX4R5eUZ1XPeXV",
 									"type": "string"
 								}
 							]
@@ -1386,13 +1386,19 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "nnnnnnnnnn",
+									"value": "zamalek",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "zamaleek",
+									"value": "zamalek",
 									"type": "text"
+								},
+								{
+									"key": "imageUrl",
+									"type": "file",
+									"src": "/E:/Photos/IMG_20230102_040115_692.jpg",
+									"disabled": true
 								}
 							]
 						},
@@ -1420,7 +1426,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "12|hkKv8ReBSHgh7DmF8nvChEn4lschzN0hb4qepnmx",
+									"value": "1|pf6c21U5kumgTySiLtn0xCSkiYuX4R5eUZ1XPeXV",
 									"type": "string"
 								}
 							]
@@ -1444,18 +1450,23 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "salah",
+									"value": "Teams",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "salah team",
+									"value": "Teams",
 									"type": "text"
+								},
+								{
+									"key": "imageUrl",
+									"type": "file",
+									"src": "/E:/Photos/photo_2022-03-23_16-46-19.jpg"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/teams/edit/13",
+							"raw": "http://localhost:8000/api/teams/edit/33",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1465,7 +1476,7 @@
 								"api",
 								"teams",
 								"edit",
-								"13"
+								"33"
 							]
 						}
 					},
@@ -1479,7 +1490,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "16|a4FNOWreMKmj8vuOrJIShaqRcZU4eIDldMzbyae7",
+									"value": "1|pf6c21U5kumgTySiLtn0xCSkiYuX4R5eUZ1XPeXV",
 									"type": "string"
 								}
 							]
@@ -1503,7 +1514,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/teams/delete/16",
+							"raw": "http://localhost:8000/api/teams/delete/33",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1513,7 +1524,7 @@
 								"api",
 								"teams",
 								"delete",
-								"16"
+								"33"
 							]
 						}
 					},
@@ -1527,7 +1538,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "12|hkKv8ReBSHgh7DmF8nvChEn4lschzN0hb4qepnmx",
+									"value": "2|xVqeKm9ZxW42zznYOP25LZ8e11A3LiMtWLC6k5cn",
 									"type": "string"
 								}
 							]
@@ -1551,7 +1562,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/teams/leave/15",
+							"raw": "http://localhost:8000/api/teams/leave/34",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1561,7 +1572,7 @@
 								"api",
 								"teams",
 								"leave",
-								"15"
+								"34"
 							]
 						}
 					},
@@ -1575,7 +1586,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "12|hkKv8ReBSHgh7DmF8nvChEn4lschzN0hb4qepnmx",
+									"value": "1|pf6c21U5kumgTySiLtn0xCSkiYuX4R5eUZ1XPeXV",
 									"type": "string"
 								}
 							]
@@ -1611,7 +1622,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/teams/remove-member/16/5",
+							"raw": "http://localhost:8000/api/teams/remove-member/35/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1621,8 +1632,8 @@
 								"api",
 								"teams",
 								"remove-member",
-								"16",
-								"5"
+								"35",
+								"2"
 							]
 						}
 					},
@@ -1636,7 +1647,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "17|EWzvNnR4MpM4u7i2eAS890wRiuC195YGMaDncNrk",
+									"value": "2|xVqeKm9ZxW42zznYOP25LZ8e11A3LiMtWLC6k5cn",
 									"type": "string"
 								}
 							]
@@ -1660,7 +1671,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/team-requests/join/18",
+							"raw": "http://localhost:8000/api/team-requests/join/35",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1670,7 +1681,7 @@
 								"api",
 								"team-requests",
 								"join",
-								"18"
+								"35"
 							]
 						}
 					},
@@ -1684,7 +1695,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "17|EWzvNnR4MpM4u7i2eAS890wRiuC195YGMaDncNrk",
+									"value": "1|pf6c21U5kumgTySiLtn0xCSkiYuX4R5eUZ1XPeXV",
 									"type": "string"
 								}
 							]
@@ -1732,7 +1743,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "16|a4FNOWreMKmj8vuOrJIShaqRcZU4eIDldMzbyae7",
+									"value": "1|pf6c21U5kumgTySiLtn0xCSkiYuX4R5eUZ1XPeXV",
 									"type": "string"
 								}
 							]
@@ -1786,7 +1797,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "16|a4FNOWreMKmj8vuOrJIShaqRcZU4eIDldMzbyae7",
+									"value": "1|pf6c21U5kumgTySiLtn0xCSkiYuX4R5eUZ1XPeXV",
 									"type": "string"
 								}
 							]
@@ -1834,7 +1845,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "16|a4FNOWreMKmj8vuOrJIShaqRcZU4eIDldMzbyae7",
+									"value": "1|pf6c21U5kumgTySiLtn0xCSkiYuX4R5eUZ1XPeXV",
 									"type": "string"
 								}
 							]
@@ -1858,7 +1869,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/team-requests/accept-join/4",
+							"raw": "http://localhost:8000/api/team-requests/accept-join/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1868,7 +1879,7 @@
 								"api",
 								"team-requests",
 								"accept-join",
-								"4"
+								"2"
 							]
 						}
 					},
@@ -1882,7 +1893,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "16|a4FNOWreMKmj8vuOrJIShaqRcZU4eIDldMzbyae7",
+									"value": "1|pf6c21U5kumgTySiLtn0xCSkiYuX4R5eUZ1XPeXV",
 									"type": "string"
 								}
 							]
@@ -1930,7 +1941,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "17|EWzvNnR4MpM4u7i2eAS890wRiuC195YGMaDncNrk",
+									"value": "1|pf6c21U5kumgTySiLtn0xCSkiYuX4R5eUZ1XPeXV",
 									"type": "string"
 								}
 							]
@@ -1984,7 +1995,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "17|EWzvNnR4MpM4u7i2eAS890wRiuC195YGMaDncNrk",
+									"value": "1|pf6c21U5kumgTySiLtn0xCSkiYuX4R5eUZ1XPeXV",
 									"type": "string"
 								}
 							]

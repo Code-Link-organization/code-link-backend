@@ -26,6 +26,7 @@ class TeamRequest extends FormRequest
         return [
             'name' => 'required|string|between:2,255',
             'description' => 'required|string|min:3',
+            'imageUrl' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4000',
         ];
     }
 }
