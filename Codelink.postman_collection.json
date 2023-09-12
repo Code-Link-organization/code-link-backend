@@ -88,7 +88,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "eman@gmail.com",
+									"value": "salah@gmail.com",
 									"type": "text"
 								},
 								{
@@ -1057,7 +1057,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|kAQ7DRFaEdugleNFltpBRYFfdWcqB6d6PK8YRlSJ",
+									"value": "5|zURDaNRBbHgHKWFPik8QJD3gZNmFGKOfuzQGjvtM",
 									"type": "string"
 								}
 							]
@@ -1220,7 +1220,7 @@
 			"name": "Users",
 			"item": [
 				{
-					"name": "users/getUser",
+					"name": "allUsers",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1230,7 +1230,55 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|kAQ7DRFaEdugleNFltpBRYFfdWcqB6d6PK8YRlSJ",
+									"value": "5|zURDaNRBbHgHKWFPik8QJD3gZNmFGKOfuzQGjvtM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "5|zURDaNRBbHgHKWFPik8QJD3gZNmFGKOfuzQGjvtM",
 									"type": "string"
 								}
 							]

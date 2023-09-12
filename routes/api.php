@@ -142,7 +142,7 @@ Route::group(['prefix' => 'profile', 'middleware' => ['auth:sanctum'], 'controll
 // --------------------------------- User Controller -------------------------------------------
 
 Route::group(['prefix' => 'users', 'middleware' => ['auth:sanctum'], 'controller' => UserController::class], function () {
-    Route::get('/', 'index');
+    Route::get('/', 'getAllUsers');
     Route::get('/show/{id}', 'getUserById');
 });
 // --------------------------------- Track Controller ------------------------------------------
