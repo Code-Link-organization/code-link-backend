@@ -13,7 +13,8 @@ use App\Http\Controllers\Api\Home\ShareController;
 use App\Http\Controllers\Api\Users\ProfileController;
 use App\Http\Controllers\Api\Users\UserController;
 use App\Http\Controllers\Api\Teams\TeamController;
-use App\Http\Controllers\Api\Teams\TeamRequestController;
+use App\Http\Controllers\Api\Teams\JoinRequestController;
+use App\Http\Controllers\Api\Teams\InviteRequestController;
 use App\Http\Controllers\Api\TrackController;
 use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\MentorController;
@@ -79,24 +80,32 @@ Route::group(['prefix' => 'teams', 'middleware' => ['auth:sanctum'], 'controller
     Route::get('/leader-teams', 'showLeaderTeams');
 });
 
-// --------------------------------- TeamRequest Controller -----------------------------------
+// --------------------------------- JoinRequest Controller -----------------------------------
 
-Route::group(['prefix' => 'team-requests', 'middleware' => ['auth:sanctum'],'controller' => TeamRequestController::class], function () {
+Route::group(['prefix' => 'join-requests', 'middleware' => ['auth:sanctum'],'controller' => JoinRequestController::class], function () {
+    Route::get('/{teamId}', 'getAllJoinRequests');
     Route::post('/join/{teamId}', 'joinTeam');
+
     // Accept and reject join requests - Leader
     Route::post('/accept-join/{id}', 'acceptJoinRequest');
     Route::post('/reject-join/{id}', 'rejectJoinRequest');
     
-    
+      // Remove Request
+      Route::post('/remove-join-request/{id}', 'removeJoinRequest'); //User
+});
+
+// --------------------------------- InviteRequest Controller -----------------------------------
+
+Route::group(['prefix' => 'invite-requests', 'middleware' => ['auth:sanctum'],'controller' => InviteRequestController::class], function () {
+    Route::get('/', 'getInviteRequests');
     Route::post('/invite/{teamId}', 'inviteTeam');
+
     // Accept and reject invite requests - User
     Route::post('/accept-invite/{id}', 'acceptInviteRequest');
     Route::post('/reject-invite/{id}', 'rejectInviteRequest');
 
-      // Remove Requests
-      Route::post('/remove-join-request/{id}', 'removeJoinRequest'); //User
+      // Remove Request
       Route::post('/remove-invite-request/{id}','removeInviteRequest'); //Leader
-     
 });
 
 // --------------------------------- Post Controller ---------------------------------------------
@@ -145,6 +154,8 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth:sanctum'], 'controller
     Route::get('/', 'getAllUsers');
     Route::get('/show/{id}', 'getUserById');
 });
+
+
 // --------------------------------- Track Controller ------------------------------------------
 
 Route::group(['prefix' => 'tracks', 'middleware' => ['auth:sanctum'], 'controller' => TrackController::class], function () {
