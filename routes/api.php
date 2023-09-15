@@ -15,14 +15,11 @@ use App\Http\Controllers\Api\Users\UserController;
 use App\Http\Controllers\Api\Teams\TeamController;
 use App\Http\Controllers\Api\Teams\JoinRequestController;
 use App\Http\Controllers\Api\Teams\InviteRequestController;
-use App\Http\Controllers\Api\TrackController;
+use App\Http\Controllers\Api\Dashboard\TrackController;
+use App\Http\Controllers\Api\Dashboard\MentorController;
+use App\Http\Controllers\Api\Dashboard\CourseController;
+use App\Http\Controllers\Api\Dashboard\CommunityController;
 use App\Http\Controllers\Api\SearchController;
-use App\Http\Controllers\Api\MentorController;
-use App\Http\Controllers\Api\CourseController;
-use App\Http\Controllers\Api\CommunityController;
-use App\Http\Controllers\Api\NotificationController;
-use App\Http\Controllers\Api\DashboardController;
-
 
 
 /*
@@ -212,21 +209,3 @@ Route::group(['prefix' => 'communities', 'middleware' => ['auth:sanctum'], 'cont
     Route::post('/delete/{id}', 'destroyCommunity');
 });
 
-// --------------------------------- Notifcation Controller -------------------------------------
-
-Route::group(['prefix' => 'notifications', 'middleware' => ['auth:sanctum'], 'controller' => NotifcationController::class], function () {
-    Route::get('/', 'index');
-    Route::post('/create', 'createNotification');
-    Route::get('/show/{id}', 'showNotification');
-    Route::post('/edit/{id}', 'editNotification');
-    Route::post('/delete/{id}', 'destroyNotification');
-});
-// --------------------------------- Dashboard Controller ------------------------------------------
-
-Route::group(['prefix' => 'admin', ['auth:sanctum'],'controller' => DashboardController::class], function () {
-    // Admin Dashboard
-    Route::get('/dashboard','index');
-    Route::post('/tracks/store', 'addTrack');
-    Route::post('/communities/store', 'addCommunity');
-    Route::post('/assign-role', 'assignRole');
-});
