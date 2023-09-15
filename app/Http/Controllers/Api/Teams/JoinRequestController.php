@@ -118,7 +118,20 @@ public function acceptJoinRequest(TeamRequest $teamRequest, $id)
     // Delete the request from the database
     $teamRequest->delete();
 
-    return $this->data(['team_id' => $team->id, 'request_id' => $teamRequest->id],'Join request accepted successfully.', 200);
+    return response()->json([
+        'result' => true,
+        'message' => 'Join request accepted successfully.',
+        'data' => [
+            'team_id' => $team->id,
+            'request_id' => $teamRequest->id,
+            'accepted_user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'imageUrl' => $user->imageUrl,
+                'track' => $user->track,
+            ],
+        ],
+    ], 200);
 }
 
 public function rejectJoinRequest($id)
