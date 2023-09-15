@@ -14,7 +14,29 @@ class JoinRequestController extends Controller
 {
     use ApiTrait;
 
-public function getAllJoinRequests($id)
+
+    public function getUserJoinRequests()
+    {
+        $user = Auth::user();
+    
+        // Get all join requests sent by the authenticated user
+        $joinRequests = TeamRequest::where('user_id', $user->id)
+            ->where('type', 'join')
+            ->with(['team:id,name', 'user:id,name,imageUrl,track'])
+            ->orderBy('created_at', 'desc')
+            ->get();
+    
+        return response()->json([
+            'result' => true,
+            'message' => 'Join requests retrieved successfully.',
+            'data' => [
+                'join_requests' => $joinRequests,
+            ],
+        ]);
+    }
+
+
+public function getLeaderJoinRequests($id)
 {
      $team = Team::findOrFail($id);
 

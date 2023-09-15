@@ -31,12 +31,12 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "eman",
+									"value": "Mohamed Emad",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "eman@gmail.com",
+									"value": "aleslam12345@gmail.com",
 									"type": "text"
 								},
 								{
@@ -88,7 +88,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "yara@gmail.com",
+									"value": "eman@gmail.com",
 									"type": "text"
 								},
 								{
@@ -227,12 +227,12 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "emanelhelaly11@gmail.com",
+									"value": "aleslam12345@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "code",
-									"value": "3125",
+									"value": "7294",
 									"type": "text"
 								}
 							]
@@ -329,7 +329,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "1|cgZnYIpalslafWGitgc1zMvHKie99pb4JsTPCefj",
+											"value": "8|cTQzBxsqWKEFBtJOCRlME8UNWViUYuS8fZ11sZhy",
 											"type": "string"
 										}
 									]
@@ -359,7 +359,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "1|2YArSOq0wRwfYxdSvlemFcX5PlewiRNkXlS8SQGz",
+											"value": "3|xVDU1HRqQ8lYAzeT0fXeTC9FVbkTRrjGFlToKbN6",
 											"type": "string"
 										}
 									]
@@ -391,7 +391,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "4|6yeIAPv9TDs7cYlkXlLsa6GfzpiXXFwHxgEtWtZN",
+											"value": "1|fzlsuigtg381ecEkB2V2Gd1Jk9UCUCh6RxmXUWl4",
 											"type": "string"
 										}
 									]
@@ -421,7 +421,8 @@
 										{
 											"key": "file_path",
 											"type": "file",
-											"src": "/E:/Photos/IMG_20230102_040115_692.jpg"
+											"src": [],
+											"disabled": true
 										}
 									]
 								},
@@ -452,7 +453,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "1|cgZnYIpalslafWGitgc1zMvHKie99pb4JsTPCefj",
+											"value": "1|fzlsuigtg381ecEkB2V2Gd1Jk9UCUCh6RxmXUWl4",
 											"type": "string"
 										}
 									]
@@ -617,7 +618,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "1|cgZnYIpalslafWGitgc1zMvHKie99pb4JsTPCefj",
+											"value": "1|fzlsuigtg381ecEkB2V2Gd1Jk9UCUCh6RxmXUWl4",
 											"type": "string"
 										}
 									]
@@ -649,7 +650,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "1|cgZnYIpalslafWGitgc1zMvHKie99pb4JsTPCefj",
+											"value": "1|fzlsuigtg381ecEkB2V2Gd1Jk9UCUCh6RxmXUWl4",
 											"type": "string"
 										}
 									]
@@ -734,7 +735,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "1|cgZnYIpalslafWGitgc1zMvHKie99pb4JsTPCefj",
+											"value": "1|fzlsuigtg381ecEkB2V2Gd1Jk9UCUCh6RxmXUWl4",
 											"type": "string"
 										}
 									]
@@ -903,7 +904,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "1|cgZnYIpalslafWGitgc1zMvHKie99pb4JsTPCefj",
+											"value": "1|fzlsuigtg381ecEkB2V2Gd1Jk9UCUCh6RxmXUWl4",
 											"type": "string"
 										}
 									]
@@ -989,7 +990,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|pf6c21U5kumgTySiLtn0xCSkiYuX4R5eUZ1XPeXV",
+									"value": "10|d7kFN4VZ0w8YsktAZIwAtmsuIXQlbocgVHhe3dbJ",
 									"type": "string"
 								}
 							]
@@ -1012,13 +1013,13 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "salah Elhelaly",
+									"value": "Mohamed Emad New ",
 									"type": "text"
 								},
 								{
 									"key": "imageUrl",
 									"type": "file",
-									"src": "/E:/Photos/photo_2022-03-23_16-46-19.jpg"
+									"src": "/Users/mohamedemad/Desktop/Screenshot 2023-09-13 at 7.16.05 PM.png"
 								},
 								{
 									"key": "track",
@@ -1027,13 +1028,13 @@
 								},
 								{
 									"key": "bio",
-									"value": "bio",
+									"value": "Android Developer",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/profile/edit-profile/1",
+							"raw": "http://localhost:8000/api/profile/edit-profile/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1043,7 +1044,7 @@
 								"api",
 								"profile",
 								"edit-profile",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -1057,7 +1058,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "5|zURDaNRBbHgHKWFPik8QJD3gZNmFGKOfuzQGjvtM",
+									"value": "11|NYhs3OzDQyzSNlY901az9QLOfzDhwrDZFe5IXOm5",
 									"type": "string"
 								}
 							]
@@ -1151,7 +1152,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/profile/edit-info/1",
+							"raw": "http://localhost:8000/api/profile/edit-info/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1161,7 +1162,7 @@
 								"api",
 								"profile",
 								"edit-info",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -1230,7 +1231,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "5|zURDaNRBbHgHKWFPik8QJD3gZNmFGKOfuzQGjvtM",
+									"value": "3|6Vjml1nkPqGPNai8C1fE0Hr7XYPUFTa8ocyOGJSK",
 									"type": "string"
 								}
 							]
@@ -1253,14 +1254,11 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/users",
-							"protocol": "http",
+							"raw": "{{host}}/users",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8000",
 							"path": [
-								"api",
 								"users"
 							]
 						}
@@ -1278,7 +1276,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "5|zURDaNRBbHgHKWFPik8QJD3gZNmFGKOfuzQGjvtM",
+									"value": "1|Eo9AoixWtm1amQn8RnvvKx8GXdKX642x1ivUCwnX",
 									"type": "string"
 								}
 							]
@@ -1298,7 +1296,20 @@
 						],
 						"body": {
 							"mode": "formdata",
-							"formdata": []
+							"formdata": [
+								{
+									"key": "email",
+									"value": "salah@gmail.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "123123",
+									"type": "text",
+									"disabled": true
+								}
+							]
 						},
 						"url": {
 							"raw": "http://localhost:8000/api/users/show/1",
@@ -1326,7 +1337,7 @@
 					"name": "Join Requests",
 					"item": [
 						{
-							"name": "join-requests",
+							"name": "Leader-join-requests",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -1376,6 +1387,55 @@
 							"response": []
 						},
 						{
+							"name": "User-join-requests",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "15|qLD63YHSZ5kr6HcSFYiUj5Oz3I6RzHL4xKtnYf0n",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+										"key": "Authorization",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/join-requests",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"join-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "join",
 							"request": {
 								"auth": {
@@ -1383,7 +1443,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "11|tsqpneaA43oZRFPsuDjXcWMQ4Akwgvc1NCX2Zxgk",
+											"value": "15|qLD63YHSZ5kr6HcSFYiUj5Oz3I6RzHL4xKtnYf0n",
 											"type": "string"
 										}
 									]
@@ -2165,6 +2225,12 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://127.0.0.1:8000/api"
 		}
 	]
 }

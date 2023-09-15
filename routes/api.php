@@ -83,7 +83,8 @@ Route::group(['prefix' => 'teams', 'middleware' => ['auth:sanctum'], 'controller
 // --------------------------------- JoinRequest Controller -----------------------------------
 
 Route::group(['prefix' => 'join-requests', 'middleware' => ['auth:sanctum'],'controller' => JoinRequestController::class], function () {
-    Route::get('/{teamId}', 'getAllJoinRequests');
+    Route::get('/', 'getUserJoinRequests');
+    Route::get('/{teamId}', 'getLeaderJoinRequests');
     Route::post('/join/{teamId}', 'joinTeam');
 
     // Accept and reject join requests - Leader
