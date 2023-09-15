@@ -216,12 +216,17 @@ public function updateTeam(Request $request, $id)
         }
     }
 
-
     public function leaveTeam($id)
     {
         $team = Team::findOrFail($id);
         $user = Auth::user();
     
+        // Check if the user is a member of the team
+        if (!$team->members->contains($user)) {
+            return $this->errorMessage([], 'You are not a member of this team.', 422);
+        }
+    
+        // Check if the user is the leader of the team
         if ($team->leader_id === $user->id) {
             return $this->errorMessage([], 'You are the leader of this team. Use delete to leave.', 422);
         }
@@ -229,18 +234,27 @@ public function updateTeam(Request $request, $id)
         // Detach the user from the team and decrement the members_count
         $user->teams()->detach($team->id);
         $team->decrement('members_count');
-    
         $team->update(['is_full' => false]);
     
-        if ($user->teams->contains($team->id)) {
-            return $this->data(['team_id' => $team->id], 'Left the team successfully.', 200);
-        } else {
-            return $this->errorMessage([], 'You were not a member of this team.', 422);
-        }
+        // Force a refresh of the user model to reflect the updated relationship
+        $user->refresh();
+    
+        return response()->json([
+            'result' => true,
+            'message' => 'Left the team successfully.',
+            'data' => [
+                'team_id' => $team->id,
+                'user_id' => $user->id,
+                'user_name' => $user->name,
+                'user_imageUrl' => $user->imageUrl,
+                'user_track' => $user->track,
+            ],
+        ], 200);
     }
     
+    
 
-    public function removeMember($teamId, $userId)
+public function removeMember($teamId, $userId)
     {
         $team = Team::findOrFail($teamId);
         $user = Auth::user();
