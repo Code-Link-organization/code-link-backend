@@ -21,6 +21,7 @@ use App\Http\Controllers\Api\Dashboard\CourseController;
 use App\Http\Controllers\Api\Dashboard\CommunityController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\SearchController;
+use App\Http\Controllers\Api\FollowController;
 
 
 /*
@@ -205,5 +206,13 @@ Route::group(['prefix' => 'notifications', 'middleware' => ['auth:sanctum'], 'co
 Route::group(['prefix' => 'search', 'middleware' => ['auth:sanctum'], 'controller' => SearchController::class], function () {
     Route::get('/users', 'searchUsers');
     Route::get('/teams', 'searchTeams');
+
+});
+
+// --------------------------------- Follow Controller ------------------------------------------
+
+Route::group(['prefix' => 'users', 'middleware' => ['auth:sanctum'], 'controller' => FollowController::class], function () {
+    Route::get('/follow', 'follow');
+    Route::get('/unfollow', 'unfollow');
 
 });
