@@ -10,8 +10,8 @@ use App\Http\Controllers\Api\Home\PostController;
 use App\Http\Controllers\Api\Home\CommentController;
 use App\Http\Controllers\Api\Home\LikesController;
 use App\Http\Controllers\Api\Home\ShareController;
-use App\Http\Controllers\Api\Users\ProfileController;
-use App\Http\Controllers\Api\Users\UserController;
+use App\Http\Controllers\Api\Individuals\ProfileController;
+use App\Http\Controllers\Api\Individuals\UserController;
 use App\Http\Controllers\Api\Teams\TeamController;
 use App\Http\Controllers\Api\Teams\JoinRequestController;
 use App\Http\Controllers\Api\Teams\InviteRequestController;
@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\Dashboard\MentorController;
 use App\Http\Controllers\Api\Dashboard\CourseController;
 use App\Http\Controllers\Api\Dashboard\CommunityController;
 use App\Http\Controllers\Api\SearchController;
+use App\Http\Controllers\Api\NotificationController;
 
 
 /*
@@ -209,3 +210,7 @@ Route::group(['prefix' => 'communities', 'middleware' => ['auth:sanctum'], 'cont
     Route::post('/delete/{id}', 'destroyCommunity');
 });
 
+// --------------------------------- Notification Controller ------------------------------------------
+Route::group(['prefix' => 'notifications', 'middleware' => ['auth:sanctum'], 'controller' => NotificationController::class], function () {
+    Route::get('/team-requests', 'getUserNotifications');
+});

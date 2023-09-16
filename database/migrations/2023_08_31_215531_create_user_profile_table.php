@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('governate')->nullable();
             $table->string('university')->nullable();
             $table->string('faculty')->nullable();
-            $table->date('birthDate')->nullable();
+            $table->string('birthDate')->nullable();
             $table->string('emailProfile')->nullable();
             $table->string('phoneNumber')->nullable();
             $table->string('projects')->nullable();

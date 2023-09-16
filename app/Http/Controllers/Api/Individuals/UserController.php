@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\Api\Users;
+namespace App\Http\Controllers\Api\Individuals;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserProfileRequest;

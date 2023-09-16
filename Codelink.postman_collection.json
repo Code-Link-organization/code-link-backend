@@ -88,7 +88,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "eman@gmail.com",
+									"value": "yara@gmail.com",
 									"type": "text"
 								},
 								{
@@ -1443,7 +1443,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "15|qLD63YHSZ5kr6HcSFYiUj5Oz3I6RzHL4xKtnYf0n",
+											"value": "19|1l0jTCXrSt4CvH9PyxsvDExKFqqLjSo3C5W4Xz29",
 											"type": "string"
 										}
 									]
@@ -1467,7 +1467,7 @@
 									"formdata": []
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/join-requests/join/38",
+									"raw": "http://localhost:8000/api/join-requests/join/39",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1477,7 +1477,7 @@
 										"api",
 										"join-requests",
 										"join",
-										"38"
+										"39"
 									]
 								}
 							},
@@ -1491,7 +1491,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "1|pf6c21U5kumgTySiLtn0xCSkiYuX4R5eUZ1XPeXV",
+											"value": "16|70rYKD2vYYQ4B1jo0RMg48Q8NvvLDKeVdErjUMH7",
 											"type": "string"
 										}
 									]
@@ -1515,7 +1515,7 @@
 									"formdata": []
 								},
 								"url": {
-									"raw": "http://localhost:8000/api/join-requests/accept-join/18",
+									"raw": "http://localhost:8000/api/join-requests/accept-join/24",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1525,7 +1525,7 @@
 										"api",
 										"join-requests",
 										"accept-join",
-										"18"
+										"24"
 									]
 								}
 							},
@@ -1947,7 +1947,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|pf6c21U5kumgTySiLtn0xCSkiYuX4R5eUZ1XPeXV",
+									"value": "18|nvoc9KLtshDVXcD0B22jOF8DlQAvtp9QjqrFP269",
 									"type": "string"
 								}
 							]
@@ -2123,7 +2123,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "2|xVqeKm9ZxW42zznYOP25LZ8e11A3LiMtWLC6k5cn",
+									"value": "15|qLD63YHSZ5kr6HcSFYiUj5Oz3I6RzHL4xKtnYf0n",
 									"type": "string"
 								}
 							]
@@ -2147,7 +2147,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/teams/leave/34",
+							"raw": "http://localhost:8000/api/teams/leave/38",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2157,7 +2157,7 @@
 								"api",
 								"teams",
 								"leave",
-								"34"
+								"38"
 							]
 						}
 					},
@@ -2219,6 +2219,42 @@
 								"remove-member",
 								"35",
 								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notifications",
+			"item": [
+				{
+					"name": "team-requests",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "18|nvoc9KLtshDVXcD0B22jOF8DlQAvtp9QjqrFP269",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/notifications/team-requests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"notifications",
+								"team-requests"
 							]
 						}
 					},
