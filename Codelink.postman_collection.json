@@ -2261,6 +2261,85 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Search",
+			"item": [
+				{
+					"name": "users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "21|s33vmAy72ENHLdmZ9IfQS7ZiM3nXQw0qYHNThR6R",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/search/users?query=n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"search",
+								"users"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teams",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "21|s33vmAy72ENHLdmZ9IfQS7ZiM3nXQw0qYHNThR6R",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/search/teams?query=z",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"search",
+								"teams"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "z"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"variable": [
