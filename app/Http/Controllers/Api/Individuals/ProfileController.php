@@ -17,6 +17,7 @@ class ProfileController extends Controller
 
     public function updateProfile(UpdateUserProfileRequest $request, $id)
  {
+    try {
     $user = User::find($id);
     
     if (!$user) {
@@ -62,10 +63,14 @@ class ProfileController extends Controller
     ];
 
     return $this->data(['user' => $userData], 'Profile updated successfully', 200);
- }
+   } catch (\Exception $e) {
+    return $this->errorMessage([], 'An error occurred while updating the profile.', 500);
+   }
+}
 
     public function updatePersonalInfo(UpdateUserProfileRequest $request, $id)
     {
+        try {
         $user = User::find($id);
 
         if (!$user) {
@@ -162,6 +167,9 @@ class ProfileController extends Controller
         }
 
         return $this->errorMessage([], 'No changes to update', 422);
+     } catch (\Exception $e) {
+        return $this->errorMessage([], 'An error occurred while updating personal information.', 500);
+     }
     }
 
 
