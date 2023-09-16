@@ -19,8 +19,8 @@ use App\Http\Controllers\Api\Dashboard\TrackController;
 use App\Http\Controllers\Api\Dashboard\MentorController;
 use App\Http\Controllers\Api\Dashboard\CourseController;
 use App\Http\Controllers\Api\Dashboard\CommunityController;
-use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\NotificationController;
+use App\Http\Controllers\Api\SearchController;
 
 
 /*
@@ -165,18 +165,6 @@ Route::group(['prefix' => 'tracks', 'middleware' => ['auth:sanctum'], 'controlle
     Route::post('/delete/{id}', 'destroyTrack');
 });
 
-// --------------------------------- Search Controller ------------------------------------------
-
-Route::group(['prefix' => 'search', 'middleware' => ['auth:sanctum'], 'controller' => SearchController::class], function () {
-    Route::get('/post/{id}', 'searchPost');
-    Route::get('/team//{id}', 'searchTeam');
-    Route::get('/mentor/{id}', 'searchMentor');
-    Route::get('/community/{id}', 'searchCommunity');
-    Route::get('/userprofile/{id}', 'searchUesrprofile');
-    Route::get('/myprofile/{id}', 'searchMyprofile');
-    Route::get('/chat/{id}', 'searchChat');
-});
-
 // --------------------------------- Mentor Controller ------------------------------------------
 
 Route::group(['prefix' => 'mentors', 'middleware' => ['auth:sanctum'], 'controller' => MentorController::class], function () {
@@ -213,4 +201,10 @@ Route::group(['prefix' => 'communities', 'middleware' => ['auth:sanctum'], 'cont
 // --------------------------------- Notification Controller ------------------------------------------
 Route::group(['prefix' => 'notifications', 'middleware' => ['auth:sanctum'], 'controller' => NotificationController::class], function () {
     Route::get('/team-requests', 'getUserNotifications');
+});
+
+// --------------------------------- Search Controller ------------------------------------------
+
+Route::group(['prefix' => 'search', 'middleware' => ['auth:sanctum'], 'controller' => SearchController::class], function () {
+    Route::get('/users', 'searchUsers');
 });
