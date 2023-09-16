@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,30 +14,25 @@ class TrackController extends Controller
     }
 
     
-    public function createTrack(Request $request)
+    public function store(Request $request)
     {
-        
+       
     }
 
     
-    
-
-     
-    public function showTrack($id)
-    {
-        
-    }
-
-    
-    public function editTrack(Request $request, $id)
+    public function show($id)
     {
         
     }
 
    
-    
-    public function destroyTrack($id)
+    public function update(Request $request, $id)
     {
-        
+       
+    }
+
+    public function destroy($id)
+    {
+       
     }
 }

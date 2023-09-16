@@ -159,43 +159,40 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth:sanctum'], 'controller
 
 Route::group(['prefix' => 'tracks', 'middleware' => ['auth:sanctum'], 'controller' => TrackController::class], function () {
     Route::get('/', 'index');
-    Route::post('/create', 'createTrack');
-    Route::get('/show/{id}', 'showTrack');
-    Route::post('/edit/{id}', 'editTrack');
-    Route::post('/delete/{id}', 'destroyTrack');
+    Route::post('/create', 'store');
+    Route::get('/show/{id}', 'show');
+    Route::post('/edit/{id}', 'update');
+    Route::post('/delete/{id}', 'destroy');
 });
 
 // --------------------------------- Mentor Controller ------------------------------------------
 
 Route::group(['prefix' => 'mentors', 'middleware' => ['auth:sanctum'], 'controller' => MentorController::class], function () {
     Route::get('/', 'index');
-    Route::post('/create', 'createMentor');
-    Route::get('/show/{id}', 'showMentor');
-    Route::post('/edit/{id}', 'editMentor');
-    Route::post('/delete/{id}', 'destroyMentor');
+    Route::post('/create', 'store');
+    Route::get('/show/{id}', 'show');
+    Route::post('/edit/{id}', 'update');
+    Route::post('/delete/{id}', 'destroy');
 });
 
 // --------------------------------- Course Controller ------------------------------------------
 
 Route::group(['prefix' => 'courses', 'middleware' => ['auth:sanctum'], 'controller' => CourseController::class], function () {
     Route::get('/', 'index');
-    Route::post('/create', 'createCourse');
-    Route::get('/show/{id}', 'showCourse');
-    Route::post('/edit/{id}', 'editCourse');
-    Route::post('/delete/{id}', 'destroyCourse');
+    Route::post('/create', 'store');
+    Route::get('/show/{id}', 'show');
+    Route::post('/edit/{id}', 'update');
+    Route::post('/delete/{id}', 'destroy');
 });
 
 // --------------------------------- Community Controller ------------------------------------------
 
 Route::group(['prefix' => 'communities', 'middleware' => ['auth:sanctum'], 'controller' => CommunityController::class], function () {
     Route::get('/', 'index');
-    Route::post('/create', 'createCommunity');
-    Route::get('/show/{id}', 'showCommunity');
-    Route::post('/edit/{id}', 'editCommunity');
-    Route::post('/joinCommunity/{id}', 'joinCommunity');
-    Route::post('/leaveCommunity/{id}', 'leaveCommunity');
-    Route::post('/sendInvitation/{id}', 'sendInvitation');
-    Route::post('/delete/{id}', 'destroyCommunity');
+    Route::post('/create', 'store');
+    Route::get('/show/{id}', 'show');
+    Route::post('/edit/{id}', 'update');
+    Route::post('/delete/{id}', 'destroy');
 });
 
 // --------------------------------- Notification Controller ------------------------------------------

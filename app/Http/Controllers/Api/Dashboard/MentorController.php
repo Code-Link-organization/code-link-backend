@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -13,29 +13,26 @@ class MentorController extends Controller
         
     }
 
-    public function createMentor(Request $request)
+    
+    public function store(Request $request)
     {
        
     }
 
-   
     
-
-    
-    public function showMentor($id)
-    {
-        
-    }
-
-    public function editMentor(Request $request, $id)
+    public function show($id)
     {
         
     }
 
    
-
-    public function destroyMentor($id)
+    public function update(Request $request, $id)
     {
-        
+       
+    }
+
+    public function destroy($id)
+    {
+       
     }
 }

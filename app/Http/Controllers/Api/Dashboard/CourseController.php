@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,23 +10,29 @@ class CourseController extends Controller
 
     public function index()
     {
+        
     }
 
-    public function createCourse(Request $request)
+    
+    public function store(Request $request)
     {
+       
     }
 
-    public function showCourse($id)
+    
+    public function show($id)
     {
+        
     }
 
-
-    public function editCourse(Request $request, $id)
+   
+    public function update(Request $request, $id)
     {
+       
     }
 
-
-    public function destroyCourse($id)
+    public function destroy($id)
     {
+       
     }
 }
