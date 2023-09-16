@@ -8,15 +8,11 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
-class SignupControllerTest extends TestCase
+class SignupTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
-    /**
-     * Test user registration and email verification.
-     *
-     * @return void
-     */
+    
     public function testUserRegistration()
     {
         $userData = [
