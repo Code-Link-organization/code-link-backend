@@ -207,4 +207,6 @@ Route::group(['prefix' => 'notifications', 'middleware' => ['auth:sanctum'], 'co
 
 Route::group(['prefix' => 'search', 'middleware' => ['auth:sanctum'], 'controller' => SearchController::class], function () {
     Route::get('/users', 'searchUsers');
+    Route::get('/teams', 'searchTeams');
+
 });

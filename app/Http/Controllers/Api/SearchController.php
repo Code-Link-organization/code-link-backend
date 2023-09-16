@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -16,7 +17,9 @@ class SearchController extends Controller
 
         $query = $request->input('query');
 
-        $users = User::where('name', 'like', '%' . $query . '%')->get();
+        $users = User::where('name', 'like', '%' . $query . '%')
+        ->orWhere('track', 'like', '%' . $query . '%')
+        ->get();
 
         return response()->json([
             'result' => true,
@@ -26,4 +29,22 @@ class SearchController extends Controller
             ],
         ]);
     }
+
+    public function searchTeams(Request $request)
+{
+    $query = $request->input('query'); 
+
+    $teams = Team::where('name', 'like', '%' . $query . '%')
+        ->orWhere('description', 'like', '%' . $query . '%')
+        ->get();
+
+    return response()->json([
+        'result' => true,
+        'message' => 'Team search results retrieved successfully.',
+        'data' => [
+            'teams' => $teams,
+        ],
+    ]);
+}
+
 }
