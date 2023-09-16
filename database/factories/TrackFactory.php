@@ -21,9 +21,8 @@ class TrackFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->unique()->word, // Generate a unique word
-            'description' => $this->faker->sentence, // Generate a random sentence
-            'admin_id' => 1
+            'name' => $this->faker->unique()->word, 
+            'description' => $this->faker->sentence, 
         ];
     }
 }

@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('description');
-            $table->unsignedBigInteger('admin_id');
-            $table->foreign('admin_id')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();
         });
